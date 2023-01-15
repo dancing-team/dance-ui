@@ -1,0 +1,15 @@
+{
+  "name": "@dance-ui/components",
+  "version": "1.0.0",
+  "description": "🌸 A simple and elegant component library.",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

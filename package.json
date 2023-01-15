@@ -1,13 +1,16 @@
 {
   "name": "dance-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "🌸 A simple and elegant component library.",
+  "repository": "https://github.com/dancing-team/dance-ui",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
+    "dev": "pnpm run -C packages/components dev",
+    "lint": "pnpm run -C packages/components lint"
   },
   "dependencies": {
     "react": "^18.2.0",
