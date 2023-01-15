@@ -2,6 +2,15 @@
   "name": "@dance-ui/components",
   "version": "1.0.0",
   "description": "🌸 A simple and elegant component library.",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/dance-ui.umd.cjs",
+  "module": "./dist/dance-ui.js",
   "scripts": {
     "dev": "vite",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +18,22 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "exports": {
+    ".": {
+      "import": "./dist/dance-ui.js",
+      "require": "./dist/dance-ui.umd.cjs"
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "dependencies": {
+    "classnames": "^2.3.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4"
+  }
 }

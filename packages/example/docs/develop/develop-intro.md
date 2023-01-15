@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # 开发流程
 
 ## 环境搭建
@@ -244,4 +247,82 @@ pnpm run -C packages/components lint
 
 项目的目录结构如下：
 
-![1673772031305](image/开发文档/1673772031305.png)
+![1673772031305](assets/1673772031305.png)
+
+### 打包配置
+
+写一个最基础的 button 组件，将其导出，改造下目录结构：
+
+![1673774671579](assets/1673774671579.png)
+
+利用 vite 的 [库模式](https://cn.vitejs.dev/guide/build.html#library-mode)进行打包
+
+- 参考文章 [使用 Vite 和 TypeScript 带你从零打造一个属于自己的 Vue3 组件库](https://www.51cto.com/article/715946.html)、[使用 Vite 从零开始构建 React 组件库](https://www.cnblogs.com/wisewrong/p/16550439.html)
+
+首先将 vite.config.ts 配置如下
+
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import { resolve } from 'path'
+import dts from 'vite-plugin-dts'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    dts({
+      //指定使用的tsconfig.json
+      tsConfigFilePath: './tsconfig.json',
+    }),
+    //因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
+    // dts({
+    //   outputDir: 'lib',
+    //   tsConfigFilePath: './tsconfig.json',
+    // }),
+  ],
+  build: {
+    target: 'modules',
+    //打包文件目录
+    outDir: 'dist',
+    //压缩
+    minify: false,
+    // 内联 css
+    // cssCodeSplit: true,
+    rollupOptions: {
+      // 确保外部化处理那些你不想打包进库的依赖
+      external: ['react', 'react-dom'],
+      output: {
+        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+        globals: {
+          react: 'react',
+          'react-dom': 'react-dom',
+        },
+      },
+    },
+    lib: {
+      entry: 'src/index.ts',
+      name: 'dance-ui',
+      fileName: 'dance-ui',
+    },
+  },
+})
+```
+
+tailwind 的打包前，需要先把 tailwind 自己的预设重置关掉：`tailwind.config.js` 中增加
+
+```dotnetcli
+module.exports = {
++  corePlugins: {
++    preflight: false,
++  }
+}
+```
+
+### 文档站环境搭建
+
+使用 [Docusaurus](https://docusaurus.io/docs) 搭建文件站
+
+```bash
+npx create-docusaurus@latest example classic --typescript
+```

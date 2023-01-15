@@ -1,14 +1,19 @@
-# Prettier 格式化未生效
+---
+sidebar_position: 2
+---
+# bug 回忆录
+
+## Prettier 格式化未生效
 
 [Support .prettierrc.js when type module is used in package.json #12701](https://github.com/prettier/prettier/issues/12701)
 
 将 .prettierrc.js 改为 .prettierrc.cjs 即可
 
-# ESLint 运行报错
+## ESLint 运行报错
 
 [javascript - Error while loading rule &#39;@typescript-eslint/dot-notation&#39; - Stack Overflow](https://stackoverflow.com/questions/64116378/error-while-loading-rule-typescript-eslint-dot-notation)
 
-## React
+### React
 
 React 18 会自动导入
 
