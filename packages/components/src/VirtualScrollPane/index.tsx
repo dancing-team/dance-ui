@@ -4,7 +4,7 @@ import React, {
 } from 'react'
 
 import { forceUpdate } from '../shared/hooks'
-import { throttle } from '../shared/utils'
+import { ceil, floor, throttle } from '../shared/utils'
 
 import type { VirtualProps } from './types'
 
@@ -45,6 +45,17 @@ const Virtual: React.FC<VirtualProps> = (props) => {
             }, 500)
         }
 
+        let currentStartPosition = floor(scrollTop / itemHeight)
+        let currentEndPosition = currentStartPosition + ceil(viewportHeight / itemHeight)
+
+        if (currentStartPosition === startPosition && currentEndPosition === endPosition) {
+            return
+        }
+
+        requestAnimationFrame(() => {
+            setStartPosition(currentStartPosition)
+            setEndPosition(currentEndPosition)
+        })
     }
 
     // ----------- render -----------

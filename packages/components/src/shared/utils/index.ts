@@ -1,5 +1,9 @@
 import throttle from './throttle'
+import ceil from './ceil'
+import floor from './floor'
 
 export {
-    throttle
+    throttle,
+    ceil,
+    floor
 }
