@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button } from '@dance-ui/components'
-import '@dance-ui/components/style.css'
+import { Button } from 'dance-ui'
+import 'dance-ui/style.css'
 import './App.css'
 
 const App = (): ReactElement => {
@@ -28,7 +28,11 @@ const App = (): ReactElement => {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
-        <Button onClick={() => alert('hello')} size="big">
+        <Button
+          onClick={() => {
+            alert('hello')
+          }}
+          size="big">
           test
         </Button>
       </div>

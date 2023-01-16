@@ -12,7 +12,8 @@
     "start": "npm run build:ui && npm run start:docs",
     "lint": "pnpm run -C packages/components lint",
     "build:ui": "pnpm run -C packages/components build",
-    "start:docs": "pnpm run -C packages/example start"
+    "start:docs": "pnpm run -C packages/example start",
+    "start:demo": "pnpm run -C packages/demo dev"
   },
   "dependencies": {
     "react": "^18.2.0",

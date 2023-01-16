@@ -325,3 +325,9 @@ module.exports = {
 ```bash
 npx create-docusaurus@latest example classic --typescript
 ```
+
+使用 [Storybook](https://storybook.js.org/docs/react/get-started/install) 搭建文件站
+
+```bash
+npx storybook init
+```
