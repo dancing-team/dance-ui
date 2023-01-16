@@ -33,7 +33,7 @@ const Virtual: React.FC<VirtualProps> = (props) => {
     const handleScroll = () => {
         // FIXME 组件库里面用可选链？
         const scrollTop = outerSliderRef?.current?.scrollTop ?? 0
-        if (currentRenderItems.length * itemHeight - scrollTop - viewportHeight < prerenderMoreHeight && renderingMoreTag) {
+        if (currentRenderItems.length * itemHeight - scrollTop - viewportHeight < prerenderMoreHeight && !renderingMoreTag) {
             setRenderingMoreTag(true)
 
             setTimeout(() => {

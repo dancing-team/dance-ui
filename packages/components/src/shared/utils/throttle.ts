@@ -10,8 +10,8 @@ const throttle = (func: any, delay: number) => {
     let timer: number | null = null
     return function () {
         //@ts-ignore
-        var context = this
-        var args = arguments
+        let context = this
+        let args = arguments
         if (!timer) {
             timer = window.setTimeout(function () {
                 func.apply(context, args)
