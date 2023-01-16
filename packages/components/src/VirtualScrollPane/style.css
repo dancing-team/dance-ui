@@ -1,0 +1,12 @@
+.main {
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+    position: relative;
+}
+
+.item {
+    width: 100vw;
+    height: 180rpx;
+    border-bottom: 2rpx solid black;
+}

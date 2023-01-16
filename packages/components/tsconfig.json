@@ -16,5 +16,17 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "paths":{
+      "@/*": [
+        "./src/*"
+      ],
+      "@/hooks/*": [
+        "./src/shared/hooks/*"
+      ],
+      "@/utils/*": [
+        "./src/shared/utils/*"
+      ]
+
+  },
   "include": ["src", "index copy.ts"]
 }
