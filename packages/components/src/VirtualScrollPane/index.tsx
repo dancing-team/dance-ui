@@ -4,7 +4,7 @@ import React, {
 } from 'react'
 
 import { forceUpdate } from '../shared/hooks'
-import { ceil, floor, throttle } from '../shared/utils'
+import { throttle } from '../shared/utils'
 
 import type { VirtualProps } from './types'
 
@@ -45,8 +45,8 @@ const Virtual: React.FC<VirtualProps> = (props) => {
             }, 500)
         }
 
-        let currentStartPosition = floor(scrollTop / itemHeight)
-        let currentEndPosition = currentStartPosition + ceil(viewportHeight / itemHeight)
+        let currentStartPosition = Math.floor(scrollTop / itemHeight)
+        let currentEndPosition = currentStartPosition + Math.ceil(viewportHeight / itemHeight)
 
         if (currentStartPosition === startPosition && currentEndPosition === endPosition) {
             return
@@ -60,7 +60,7 @@ const Virtual: React.FC<VirtualProps> = (props) => {
 
     // ----------- render -----------
     return (
-        <div className="main" ref={outerSliderRef} onScroll={throttle(handleScroll, throttleDelay)}>
+        <div className="scroll-container" ref={outerSliderRef} onScroll={throttle(handleScroll, throttleDelay)}>
             <div
                 className="wrap"
                 style={{
