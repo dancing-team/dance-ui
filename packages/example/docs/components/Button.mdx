@@ -6,10 +6,14 @@ sidebar_position: 1
 
 xxxxxxxxxxxx
 
+import DemoBlock from '@site/src/components/DemoBlock'
 import { Button } from '@dance-ui/ui'
 
-<div className="flex flex-col bg-slate-200 p-4">
+<DemoBlock>
   <Button size="large" onClick={() => alert('hello')}>
     Button
   </Button>
-</div>
+  <Button size="large" onClick={() => alert('hello')}>
+    Button
+  </Button>
+</DemoBlock>
