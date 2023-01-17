@@ -52,7 +52,7 @@ const Button = React.forwardRef(function ButtonInner(
         type === 'unstyle'
           ? className
           : classNames(
-              'box-border border transition',
+              'box-border border transition focus:outline-none',
               sizeClass[size ?? 'middle'],
               danger ? dangerClass[type ?? 'default'] : null,
               ghost ? ghostClass[type ?? 'default'] : typeClass[type ?? 'default'],

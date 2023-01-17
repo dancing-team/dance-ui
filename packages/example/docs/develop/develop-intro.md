@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 ---
+
 # 开发流程
 
 ## 环境搭建
@@ -49,8 +50,6 @@ pnpm add @commitlint/cli @commitlint/config-conventional commitlint husky -D
 pnpm add eslint -D
 pnpm eslint --init
 ```
-
-![](https://nf2pjr3e5t.feishu.cn/space/api/box/stream/download/asynccode/?code=N2Y5YzM3ODg3ODNjZGU1NjdhMDQzNDY2MDIyZGI4MDJfQzVUQ25QeEVYNVFLdEk2TDJwZG1OSUJMZFozSm5ISnVfVG9rZW46Ym94Y25iWWh5SzF1MGpxc3hBMlhwQkM0MUFmXzE2NzM3MTA4OTI6MTY3MzcxNDQ5Ml9WNA)
 
 生成 `.eslintrc.cjs`文件如下：
 
@@ -325,4 +324,10 @@ module.exports = {
 
 ```bash
 npx create-docusaurus@latest example classic --typescript
+```
+
+使用 [Storybook](https://storybook.js.org/docs/react/get-started/install) 搭建文件站
+
+```bash
+npx storybook init
 ```
