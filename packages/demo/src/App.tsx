@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import { Button } from '@dance-ui/ui'
-import '@dance-ui/style.css'
+import '@dance-ui/ui/style.css'
 import './App.css'
 
 const App = (): ReactElement => {
