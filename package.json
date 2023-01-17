@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "start": "npm run build:ui && npm run start:docs",
     "lint": "pnpm run -C packages/components lint",
     "build:ui": "pnpm run -C packages/components build",
