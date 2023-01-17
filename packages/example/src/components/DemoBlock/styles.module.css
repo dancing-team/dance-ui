@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: 'center';
+  align-items: 'center';
+  background-color: gray;
+}
+.demo {
+  padding: 1rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+}

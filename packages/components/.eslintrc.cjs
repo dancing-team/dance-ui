@@ -8,12 +8,12 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: ['./tsconfig.json'],
   },
   plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/triple-slash-reference': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
   },
 }

@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import reactLogo from './assets/react.svg'
+import { Button } from '@dance-ui/ui'
 import './App.css'
 
-type AppProps = {}
-
-export const App: React.FunctionComponent<AppProps> = (props) => {
+const App = (): ReactElement => {
   const [count, setCount] = useState(0)
 
   return (
@@ -18,7 +17,6 @@ export const App: React.FunctionComponent<AppProps> = (props) => {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <h1 className="text-3xl font-bold underline"> Hello world!</h1>
       <div className="card">
         <button
           onClick={() => {
@@ -29,6 +27,13 @@ export const App: React.FunctionComponent<AppProps> = (props) => {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
+        <Button
+          onClick={() => {
+            alert('hello')
+          }}
+          size="large">
+          test
+        </Button>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </div>

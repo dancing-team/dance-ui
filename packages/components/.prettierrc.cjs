@@ -12,4 +12,5 @@ module.exports = {
   embeddedLanguageFormatting: 'auto',
   printWidth: 128,
   plugins: [require('prettier-plugin-tailwindcss')],
+  tailwindConfig: './tailwind.config.cjs',
 }

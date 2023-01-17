@@ -14,8 +14,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "dance-ui": ["node_modules/dance-ui"]
+    },
+    "preserveSymlinks": true
   },
-	"include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
