@@ -59,12 +59,14 @@ importers:
       classnames: ^2.3.2
       postcss: ^8.4.21
       tailwindcss: ^3.2.4
+      vite-plugin-libcss: ^1.0.5
     dependencies:
       classnames: 2.3.2
     devDependencies:
       autoprefixer: 10.4.13_postcss@8.4.21
       postcss: 8.4.21
       tailwindcss: 3.2.4_postcss@8.4.21
+      vite-plugin-libcss: 1.0.5
 
   packages/demo:
     specifiers:
@@ -9936,6 +9938,12 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: true
+
+  /vite-plugin-libcss/1.0.5:
+    resolution: {integrity: sha512-NUQwWhn9j8fpRBwHeDr35a3TuRP0xvdIHtJni+3DcnPcq4Vrg+G5A3ZtCJ8y2EC83G97tBJ36svPdiIVuBEfsQ==}
+    peerDependencies:
+      vite: ^2
     dev: true
 
   /vite/4.0.4:
