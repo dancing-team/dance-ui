@@ -1,0 +1,40 @@
+{
+  "name": "@dance-ui/ui",
+  "version": "0.0.1",
+  "description": "🌸 A simple and elegant component library.",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/dance-ui.umd.cjs",
+  "module": "./dist/dance-ui.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "pub": "npm publish --access public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/dance-ui.js",
+      "require": "./dist/dance-ui.umd.cjs"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "vite-plugin-libcss": "^1.0.5"
+  }
+}

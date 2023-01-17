@@ -1,0 +1,49 @@
+{
+  "name": "dance-ui",
+  "private": true,
+  "version": "1.0.0",
+  "description": "🌸 A simple and elegant component library.",
+  "repository": "https://github.com/dancing-team/dance-ui",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "serve": "pnpm build:ui && pnpm build:docs && pnpm serve:docs",
+    "start": "pnpm build:ui && npm run start:docs",
+    "start:docs": "pnpm run -C packages/example start",
+    "start:demo": "pnpm run -C packages/demo dev",
+    "lint": "pnpm run -C packages/components lint",
+    "build:ui": "pnpm run -C packages/components build",
+    "build:docs": "pnpm build:ui && pnpm run -C packages/example build",
+    "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^27.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.32.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.3",
+    "prettier-plugin-tailwindcss": "^0.2.1",
+    "tailwindcss": "^3.2.4",
+    "typescript": "*",
+    "vite": "^4.0.0",
+    "vite-plugin-dts": "^1.7.1"
+  }
+}
