@@ -11,6 +11,13 @@ export default defineConfig({
     dts({
       //指定使用的tsconfig.json
       tsConfigFilePath: './tsconfig.json',
+      /**
+      * 是否生成类型声明入口
+      * 当为 true 时会基于 package.json 的 types 字段生成，或者 `${outputDir}/index.d.ts`
+      * 当开启打包类型文件时强制为 true
+      * @default false
+      */
+      insertTypesEntry: true
     }),
   ],
   build: {
@@ -35,7 +42,8 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'dance-ui',
-      fileName: 'dance-ui',
+      // formatType: es、umd等
+      fileName: formatType => `dance-ui.${formatType}.js`
     },
   },
 })
