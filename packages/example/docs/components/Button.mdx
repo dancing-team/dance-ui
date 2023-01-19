@@ -6,6 +6,14 @@ sidebar_position: 1
 
 xxxxxxxxxxxx
 
-import { Button } from 'dance-ui'
+import DemoBlock from '@site/src/components/DemoBlock'
+import { Button } from '@dance-ui/ui'
 
-<Button onClick={() => alert('hello')}>Button</Button>
+<DemoBlock>
+  <Button size="large" onClick={() => alert('hello')}>
+    Button
+  </Button>
+  <Button size="large" onClick={() => alert('hello')}>
+    Button
+  </Button>
+</DemoBlock>

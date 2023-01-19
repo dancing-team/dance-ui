@@ -1,7 +1,6 @@
 import { ReactElement, useState } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button } from 'dance-ui'
-import 'dance-ui/style.css'
+import { Button } from '@dance-ui/ui'
 import './App.css'
 
 const App = (): ReactElement => {
@@ -32,7 +31,7 @@ const App = (): ReactElement => {
           onClick={() => {
             alert('hello')
           }}
-          size="big">
+          size="large">
           test
         </Button>
       </div>

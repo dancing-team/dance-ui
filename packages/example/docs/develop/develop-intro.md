@@ -326,8 +326,46 @@ module.exports = {
 npx create-docusaurus@latest example classic --typescript
 ```
 
-使用 [Storybook](https://storybook.js.org/docs/react/get-started/install) 搭建文件站
+### npm 发包
 
-```bash
-npx storybook init
+在 packages/components/package.json 中加入发布脚本 pub， 利用 npm publish 进行发布
+
+然后报错，怎么回事呢。
+
+```json
+{
+  "scripts": {
+    "pub": "npm publish --access public"
+  }
+}
 ```
+
+本地发包需要注册登录 npm：`npm adduser` 输入你的一些信息
+
+![1673951310620](assets/1673951310620.png)
+
+> ps: 需要将镜像源切到 npm 官方，可以使用 nrm 管理
+
+查看当前 npm 登录人 npm whoami
+
+![1673950637498](assets/1673950637498.png)
+
+发布成功，注意我这里使用的两步验证发的
+
+![1673952216779](assets//1673952216779.png)
+
+### preinstall & changesets
+
+preinstall 只允许 pnpm
+
+当在项目中使用 pnpm 时，如果不希望用户使用 yarn 或者 npm 安装依赖，可以将下面的这个 preinstall 脚本添加到工程根目录下的 package.json 中：
+
+```json
+{
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  }
+}
+```
+
+[preinstall](https://docs.npmjs.com/cli/v6/using-npm/scripts#pre--post-scripts) 脚本会在 install 之前执行，现在，只要有人运行 `npm install` 或 `yarn install`，就会调用 [only-allow](https://github.com/pnpm/only-allow) 去限制只允许使用 pnpm 安装依赖。

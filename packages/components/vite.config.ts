@@ -1,20 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import dts from 'vite-plugin-dts'
+import libCss from 'vite-plugin-libcss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    libCss(),
     dts({
       //指定使用的tsconfig.json
       tsConfigFilePath: './tsconfig.json',
     }),
-    //因为这个插件默认打包到es下，我们想让lib目录下也生成声明文件需要再配置一个
-    // dts({
-    //   outputDir: 'lib',
-    //   tsConfigFilePath: './tsconfig.json',
-    // }),
   ],
   build: {
     target: 'modules',

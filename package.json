@@ -9,11 +9,15 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "npm run build:ui && npm run start:docs",
+    "preinstall": "npx only-allow pnpm",
+    "serve": "pnpm build:ui && pnpm build:docs && pnpm serve:docs",
+    "start": "pnpm build:ui && npm run start:docs",
+    "start:docs": "pnpm run -C packages/example start",
+    "start:demo": "pnpm run -C packages/demo dev",
     "lint": "pnpm run -C packages/components lint",
     "build:ui": "pnpm run -C packages/components build",
-    "start:docs": "pnpm run -C packages/example start",
-    "start:demo": "pnpm run -C packages/demo dev"
+    "build:docs": "pnpm build:ui && pnpm run -C packages/example build",
+    "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve"
   },
   "dependencies": {
     "react": "^18.2.0",
