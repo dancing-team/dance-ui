@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 ---
-
 # 开发流程
 
 ## 环境搭建
@@ -381,11 +380,10 @@ pnpm install @changesets/cli -w -D  && npx changeset init
 
 执行 `npx changeset add` 选择本次 changeset 需要发布的包
 
-在根目录的 package.json 中新增 2 个 script 方便后续使用
+在根目录的 package.json 中新增 1 个 script 方便后续使用
 
 ```json
-"version": "changeset version",
-"publish": "changeset publish"
+    "release": "changeset version && changeset publish""version"
 ```
 
 版本号一般有三个部分，以.隔开，就像 X.Y.Z，其中
@@ -403,7 +401,10 @@ Z：修订版本号，问题修复，patch
 
 执行后之前生成的 stale-shrimps-design.md 会被消费掉并修改对应的子包下的 package.json 并生成 CHANGELOG.md
 
-package.json
+自动化发布：[实现自动化发布](https://juejin.cn/post/7140639347937640479#heading-7)
+
+NPM_TOKEN 的获取
+
 在 npm 官网 生成 Npm 私钥，注意选择 Automation
 
 ![1674142424970](assets/1674142424970.png)
