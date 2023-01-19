@@ -9,8 +9,9 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/dance-ui.umd.cjs",
-  "module": "./dist/dance-ui.js",
+  "main": "./dist/dance-ui.es.js",
+  "module": "./dist/dance-ui.es.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && vite build",
@@ -20,8 +21,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/dance-ui.js",
-      "require": "./dist/dance-ui.umd.cjs"
+      "import": "./dist/dance-ui.es.js",
+      "require": "./dist/dance-ui.umd.js"
     }
   },
   "publishConfig": {
