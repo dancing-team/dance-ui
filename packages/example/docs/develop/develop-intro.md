@@ -369,3 +369,41 @@ preinstall 只允许 pnpm
 ```
 
 [preinstall](https://docs.npmjs.com/cli/v6/using-npm/scripts#pre--post-scripts) 脚本会在 install 之前执行，现在，只要有人运行 `npm install` 或 `yarn install`，就会调用 [only-allow](https://github.com/pnpm/only-allow) 去限制只允许使用 pnpm 安装依赖。
+
+changesets 使用：[使用 Changesets 自动版本管理](https://github.com/ChelesteWang/learn-monorepo#%E4%BD%BF%E7%94%A8-changesets-%E8%87%AA%E5%8A%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86)
+
+- [Changesets: 流行的 monorepo 场景发包工具](https://zhuanlan.zhihu.com/p/427588430)
+- 根目录下安装 @changesets/cli 并初始化
+
+```bash
+pnpm install @changesets/cli -w -D  && npx changeset init
+```
+
+执行 `npx changeset add` 选择本次 changeset 需要发布的包
+
+在根目录的 package.json 中新增 2 个 script 方便后续使用
+
+```json
+"version": "changeset version",
+"publish": "changeset publish"
+```
+
+版本号一般有三个部分，以.隔开，就像 X.Y.Z，其中
+
+X：主版本号，不兼容的大改动，major
+Y：次版本号，功能性的改动，minor
+Z：修订版本号，问题修复，patch
+每个部分为整数（>=0），按照递增的规则改变。
+
+使用 changeset version 提交版本修改
+
+`npx changeset version`
+
+![1674143438972](assets/1674143438972.png)
+
+执行后之前生成的 stale-shrimps-design.md 会被消费掉并修改对应的子包下的 package.json 并生成 CHANGELOG.md
+
+package.json
+在 npm 官网 生成 Npm 私钥，注意选择 Automation
+
+![1674142424970](assets/1674142424970.png)

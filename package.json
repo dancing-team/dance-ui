@@ -15,15 +15,20 @@
     "start:docs": "pnpm run -C packages/example start",
     "start:demo": "pnpm run -C packages/demo dev",
     "lint": "pnpm run -C packages/components lint",
+    "build": "pnpm run build:ui && pnpm build:docs",
     "build:ui": "pnpm run -C packages/components build",
     "build:docs": "pnpm build:ui && pnpm run -C packages/example build",
-    "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve"
+    "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve",
+    "change": "npx changeset add",
+    "version": "changeset version",
+    "publish": "changeset publish"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
