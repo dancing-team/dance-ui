@@ -21,7 +21,8 @@
     "build:docs": "pnpm build:ui && pnpm run -C packages/example build",
     "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve",
     "change": "npx changeset add",
-    "release": "changeset version && changeset publish"
+    "change:ver": "changeset version",
+    "change:pub": "changeset publish"
   },
   "dependencies": {
     "react": "^18.2.0",

@@ -1,8 +1,6 @@
 name: Release
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - main
 jobs:
@@ -35,7 +33,8 @@ jobs:
       - name: Create Release Pull Request and Publish
         uses: changesets/action@v1
         with:
-          publish: pnpm release
+          version: pnpm change:ver
+          publish: pnpm change:pub
           commit: 'ci: release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

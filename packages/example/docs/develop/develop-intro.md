@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 ---
+
 # 开发流程
 
 ## 环境搭建
@@ -383,7 +384,7 @@ pnpm install @changesets/cli -w -D  && npx changeset init
 在根目录的 package.json 中新增 1 个 script 方便后续使用
 
 ```json
-    "release": "changeset version && changeset publish""version"
+    "version": "changeset version"
 ```
 
 版本号一般有三个部分，以.隔开，就像 X.Y.Z，其中
