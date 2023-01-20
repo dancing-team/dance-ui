@@ -22,7 +22,8 @@
     "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve",
     "change": "npx changeset add",
     "change:ver": "changeset version",
-    "change:pub": "changeset publish"
+    "change:pub": "changeset publish",
+    "new": "pnpm run -C packages/new-component new"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -44,6 +45,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.1",
