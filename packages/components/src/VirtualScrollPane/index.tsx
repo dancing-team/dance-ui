@@ -1,88 +1,89 @@
-import React, {
-    useState,
-    useRef,
-} from 'react'
-
-import { forceUpdate } from '../shared/hooks'
-import { throttle } from '../shared/utils'
+import React from 'react'
 
 import type { VirtualProps } from './types'
 
-import './style.css'
+import { throttle } from '../shared/utils'
+
+import './index.css'
+
+let pageCounter = 0
 
 const Virtual: React.FC<VirtualProps> = (props) => {
     const {
         itemHeight = 90,
         renderItems = 10,
         throttleDelay = 200,
-        prerenderMoreHeight = 400,
+        prerenderMoreHeight = 200,
         viewportHeight,
         dataSource
     } = props
 
-    // ----------- states -----------
-    const [startPosition, setStartPosition] = useState(0)
-    const [endPosition, setEndPosition] = useState(renderItems - 1)
-    const [renderingMoreTag, setRenderingMoreTag] = useState(false)
-    const [pageNo, setPageNo] = useState(2)
-    const outerSliderRef = useRef<HTMLDivElement>(null)
-    const currentRenderItems = dataSource.slice(0, 19)
+    // state
+    const containerRef = React.useRef<HTMLDivElement>(null)
+    // const [pageCounter, setPageCounter] = React.useState(0)
+    // const [renderList, setrenderList] = React.useState<ReactElement[]>([])
+    const [startIndex, setStartIndex] = React.useState(0)
+    const [endIndex, setEndIndex] = React.useState(renderItems - 1)
+    const [, forceUpdate] = React.useState({})
+    const renderList = React.useRef(dataSource.slice(0, renderItems))
 
 
-    // ----------- methods -----------
+    // effect
+    // React.useEffect(() => {
+    //     setrenderList(dataSource.slice(renderItems * pageCounter, renderItems * (pageCounter + 1)))
+    // }, [])
+
+    React.useEffect(() => {
+        console.log('当前渲染长度', renderList)
+        console.log('开始位置', startIndex)
+        console.log('结束位置', endIndex)
+    }, [renderList.current.length, startIndex, endIndex])
+
+    //methods
     const handleScroll = () => {
-        // FIXME 组件库里面用可选链？
-        const scrollTop = outerSliderRef?.current?.scrollTop ?? 0
-        if (currentRenderItems.length * itemHeight - scrollTop - viewportHeight < prerenderMoreHeight && !renderingMoreTag) {
-            setRenderingMoreTag(true)
+        // 渲染区域总高度 & 滚动距离
+        const renderListHeight = renderList.current.length * itemHeight
+        const scrollTop = containerRef.current?.scrollTop ?? 0
+        console.log(renderListHeight - scrollTop - viewportHeight, prerenderMoreHeight)
 
-            setTimeout(() => {
-                currentRenderItems.push(...dataSource.slice(pageNo * renderItems, pageNo * renderItems + (renderItems - 1)))
-                setPageNo(prev => prev + 1)
-                handleScroll()
-                setRenderingMoreTag(false)
-                forceUpdate(prev => !prev)
-            }, 500)
+        if (renderListHeight - scrollTop - viewportHeight < prerenderMoreHeight) {
+            pageCounter += 1
+            // 这个拼接很奇怪
+            renderList.current.push(...dataSource.slice(pageCounter * renderItems, pageCounter * renderItems + 5))
+
+            let newStartIndex = Math.floor(scrollTop / itemHeight)
+            let newEndIndex = newStartIndex + Math.ceil(viewportHeight / itemHeight)
+
+            // requestAnimationFrame(() => {
+            setStartIndex(newStartIndex)
+            setEndIndex(newEndIndex)
+            // })
         }
-
-        let currentStartPosition = Math.floor(scrollTop / itemHeight)
-        let currentEndPosition = currentStartPosition + Math.ceil(viewportHeight / itemHeight)
-
-        if (currentStartPosition === startPosition && currentEndPosition === endPosition) {
-            return
-        }
-
-        requestAnimationFrame(() => {
-            setStartPosition(currentStartPosition)
-            setEndPosition(currentEndPosition)
-        })
     }
 
-    // ----------- render -----------
+    //render
     return (
-        <div className="scroll-container" ref={outerSliderRef} onScroll={throttle(handleScroll, throttleDelay)}>
+        <div
+            className='container'
+            ref={containerRef}
+            onScroll={throttle(handleScroll, throttleDelay)}
+        >
             <div
-                className="wrap"
-                style={{
-                    height: currentRenderItems.length * itemHeight * 2,// 这里默认是2倍屏
-                }}
+                className='wrapper'
+                style={{ height: dataSource.length * itemHeight }}
             >
-                {currentRenderItems.slice(startPosition, endPosition).map((item, index) => {
-                    return (
-                        <div
-                            className="item"
-                            key={index}
-                            // FIXME 拆css
-                            style={{
+                {React.Children.map(renderList.current.slice(startIndex, endIndex), (item, index) => {
+                    return React.cloneElement(item,
+                        {
+                            className: 'scroll-item',
+                            style: {
                                 position: 'absolute',
                                 left: 0,
                                 top: 0,
-                                transform: `translateY(${(startPosition + index) * itemHeight}px)`,
-                            }}
-                        >
-                            {item}
-                        </div>
-                    );
+                                transform: `translateY(${(startIndex + index) * itemHeight}px)`,
+                            }
+                        }
+                    )
                 })}
             </div>
         </div>

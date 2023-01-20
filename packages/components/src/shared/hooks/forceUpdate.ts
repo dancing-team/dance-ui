@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import * as React from 'react'
 
-const [forceUpdateTag, forceUpdate] = useState(false)
+const useForceUpdate = () => {
+    const [, forceUpdate] = React.useState({})
 
-export {
-    forceUpdateTag,
-    forceUpdate
+    return React.useCallback(() => forceUpdate({}), [])
 }
+
+export default useForceUpdate

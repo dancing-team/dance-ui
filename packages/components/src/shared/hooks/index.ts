@@ -1,5 +1,5 @@
-import { forceUpdate } from "./forceUpdate";
+import useForceUpdate from "./forceUpdate";
 
 export {
-    forceUpdate
+    useForceUpdate
 }

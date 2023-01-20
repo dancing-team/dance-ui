@@ -1,9 +1,9 @@
-import React from "react"
+import React, { ReactElement } from "react"
 
 export interface VirtualProps {
-    dataSource: React.ReactNode[]
+    dataSource: ReactElement[]
     viewportHeight: number
-    
+
     prerenderMoreHeight?: number
     throttleDelay?: number
     itemHeight?: number

@@ -15,6 +15,7 @@ const throttle = (func: any, delay: number) => {
         if (!timer) {
             timer = window.setTimeout(function () {
                 func.apply(context, args)
+                timer = null
             }, delay)
         }
     }

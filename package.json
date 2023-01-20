@@ -16,6 +16,7 @@
     "start:demo": "pnpm run -C packages/demo dev",
     "lint": "pnpm run -C packages/components lint",
     "build:ui": "pnpm run -C packages/components build",
+    "build:ui-watch": "pnpm run -C packages/components build-watch",
     "build:docs": "pnpm build:ui && pnpm run -C packages/example build",
     "serve:docs": "pnpm build:docs && pnpm run -C packages/example serve"
   },
