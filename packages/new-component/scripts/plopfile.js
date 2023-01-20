@@ -64,8 +64,7 @@ export default function (plop) {
       {
         type: 'append',
         path: path.resolve(__dirname, '../../components/src/index.ts'),
-        pattern: '/* PLOP_INJECT_EXPORT */',
-        template: "export { default as {{pascalCase name}} } from './{{pascalCase name}}';",
+        template: "export { default as {{pascalCase name}} } from './{{pascalCase name}}'\n",
       },
     ],
   })
