@@ -33,7 +33,8 @@ jobs:
       - name: Create Release Pull Request and Publish
         uses: changesets/action@v1
         with:
-          version: pnpm version
+          version: pnpm change:ver
+          publish: pnpm change:pub
           commit: 'ci: release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
