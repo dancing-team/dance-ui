@@ -446,7 +446,7 @@ cd scripts
 ```json
 // packages/add-component/package.json
 "scripts": {
-+ "new": "plop --plopfile ./scripts/plopfile.ts",
++ "new": "plop --plopfile ./scripts/plopfile.js"
 },
 ```
 
