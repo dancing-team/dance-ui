@@ -1,0 +1,16 @@
+{
+  "name": "new-component",
+  "version": "1.0.0",
+  "description": "新建组件脚本",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "new": "plop --plopfile ./scripts/plopfile.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "plop": "^3.1.1"
+  }
+}
