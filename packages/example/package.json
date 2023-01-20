@@ -6,6 +6,10 @@
     "cosine_yu@qq.com"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",

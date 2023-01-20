@@ -12,6 +12,10 @@
   "main": "./dist/dance-ui.es.js",
   "module": "./dist/dance-ui.es.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && vite build",
@@ -25,10 +29,6 @@
       "import": "./dist/dance-ui.es.js",
       "require": "./dist/dance-ui.umd.js"
     }
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
   },
   "dependencies": {
     "classnames": "^2.3.2"
