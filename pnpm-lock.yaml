@@ -72,7 +72,7 @@ importers:
 
   packages/demo:
     specifiers:
-      '@dance-ui/ui': workspace:^0.0.1
+      '@dance-ui/ui': workspace:^0.0.2
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.9
       '@vitejs/plugin-react': ^3.0.0
@@ -93,7 +93,7 @@ importers:
 
   packages/example:
     specifiers:
-      '@dance-ui/ui': workspace:^0.0.1
+      '@dance-ui/ui': workspace:^0.0.2
       '@docusaurus/core': 2.2.0
       '@docusaurus/module-type-aliases': 2.2.0
       '@docusaurus/preset-classic': 2.2.0
