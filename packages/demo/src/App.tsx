@@ -17,17 +17,23 @@ const PerformaceTestItem: React.FC<{ text: string }> = ({ text }) => {
     setBcc(getRandomColor())
   }, [])
 
-  return <div style={{ background: bcc, height: '90px' }}>{text}</div>
+  return (
+    <div style={{ background: bcc, height: '90px'}}>
+      {text}
+    </div>
+  )
 }
 
-// 模拟一个1000长度的数据源
-const dataSource: React.ReactNode[] = []
-for (let i = 0; i < 1000; i++) {
-  const item = <div style={{ padding: '4px' }}><PerformaceTestItem text={i.toString()} /></div>
+// 模拟一个10000长度的数据源
+const dataSource: React.ReactElement[] = []
+for (let i = 0; i < 10000; i++) {
+  const item = <div><PerformaceTestItem text={i.toString()} /></div>
   dataSource.push(item)
 }
 
 const App: React.FC = () => {
+  const [virtual, setVirtual] = React.useState(true)
+
   return (
     <div className="App">
       <h1>Demo</h1>
@@ -43,21 +49,25 @@ const App: React.FC = () => {
 
       </div>
       <div className='card'>
-        开启虚拟滚动：
-        <div style={{ width: '300px', height: '600px', border: 'solid #000 1px' }}>
-          <VirtualScrollPane
-            viewportHeight={600}
-            dataSource={dataSource}
-          />
+        <div>
+          <input type='checkbox' checked={virtual} onChange={() => setVirtual(!virtual)} />
+          <span>{`${virtual ? '关闭' : '开启'}虚拟滚动`}</span>
         </div>
+        <h3>虚拟滚动{virtual ? 'on' : 'off'}</h3>
+        {virtual && <React.Fragment>
+          <div style={{ width: '300px', height: '600px', border: 'solid #000 1px' }}>
+            <VirtualScrollPane
+              viewportHeight={600}
+              dataSource={dataSource}
+            />
+          </div>
+        </React.Fragment>}
+        {!virtual && <React.Fragment>
+          <div style={{ width: '300px', height: '600px', border: 'solid #000 1px', overflow: 'auto' }}>
+            {dataSource}
+          </div>
+        </React.Fragment>}
       </div>
-
-      {/* <div className='card'>
-        无虚拟滚动：
-        <div style={{ width: '300px', height: '600px', border: 'solid #000 1px', overflow: 'auto' }}>
-          {dataSource}
-        </div>
-      </div> */}
 
     </div>
   )

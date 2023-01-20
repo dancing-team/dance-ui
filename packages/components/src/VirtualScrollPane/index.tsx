@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import type { VirtualProps } from './types'
 
@@ -6,62 +6,56 @@ import { throttle } from '../shared/utils'
 
 import './index.css'
 
-let pageCounter = 0
+
 
 const Virtual: React.FC<VirtualProps> = (props) => {
     const {
-        itemHeight = 90,
-        renderItems = 10,
-        throttleDelay = 200,
-        prerenderMoreHeight = 200,
         viewportHeight,
-        dataSource
+        dataSource,
+
+        countOfBufferNodes = 5,
+        itemHeight = 90,
+        throttleDelay = 200,
     } = props
 
-    // state
+    const [pageCounter, setPageCounter] = React.useState(0)
+    /** containerRef挂载在滚动层，用于获取滚动高度scrollTop */
     const containerRef = React.useRef<HTMLDivElement>(null)
-    // const [pageCounter, setPageCounter] = React.useState(0)
-    // const [renderList, setrenderList] = React.useState<ReactElement[]>([])
+    /** 视口内被渲染的节点数量 */
+    const renderCountOfItems = React.useMemo(() => Math.ceil(viewportHeight / itemHeight), [viewportHeight, itemHeight])
+    /** 初始化时渲染的节点数量，初始化时不能向上滚动，所以往下缓冲节点*/
+    const initRenderCountOfItems = React.useMemo(() => renderCountOfItems * (pageCounter + 1) + countOfBufferNodes, [renderCountOfItems, countOfBufferNodes])
+
+
+
+    // ---------- state ----------
+    /** 滚动视口内第一个 & 最后一个节点的索引值 */
     const [startIndex, setStartIndex] = React.useState(0)
-    const [endIndex, setEndIndex] = React.useState(renderItems - 1)
-    const [, forceUpdate] = React.useState({})
-    const renderList = React.useRef(dataSource.slice(0, renderItems))
+    const [endIndex, setEndIndex] = React.useState(renderCountOfItems - 1)
+    /** 节点渲染列表。 */
+    const [renderList, setRenderList] = React.useState(dataSource.slice(pageCounter, initRenderCountOfItems))
 
-
-    // effect
-    // React.useEffect(() => {
-    //     setrenderList(dataSource.slice(renderItems * pageCounter, renderItems * (pageCounter + 1)))
-    // }, [])
-
-    React.useEffect(() => {
-        console.log('当前渲染长度', renderList)
-        console.log('开始位置', startIndex)
-        console.log('结束位置', endIndex)
-    }, [renderList.current.length, startIndex, endIndex])
-
-    //methods
+    // ---------- methods ----------
     const handleScroll = () => {
-        // 渲染区域总高度 & 滚动距离
-        const renderListHeight = renderList.current.length * itemHeight
         const scrollTop = containerRef.current?.scrollTop ?? 0
-        console.log(renderListHeight - scrollTop - viewportHeight, prerenderMoreHeight)
-
-        if (renderListHeight - scrollTop - viewportHeight < prerenderMoreHeight) {
-            pageCounter += 1
-            // 这个拼接很奇怪
-            renderList.current.push(...dataSource.slice(pageCounter * renderItems, pageCounter * renderItems + 5))
-
-            let newStartIndex = Math.floor(scrollTop / itemHeight)
-            let newEndIndex = newStartIndex + Math.ceil(viewportHeight / itemHeight)
-
-            // requestAnimationFrame(() => {
-            setStartIndex(newStartIndex)
-            setEndIndex(newEndIndex)
-            // })
-        }
+        concatItems()
+        const currentStartIndex = Math.floor(scrollTop / itemHeight)
+        const currentEndIndex = currentStartIndex + Math.ceil(viewportHeight / itemHeight);
+        if (currentStartIndex === startIndex && currentEndIndex === endIndex) return
+        requestAnimationFrame(() => {
+            setStartIndex(currentStartIndex)
+            setEndIndex(currentEndIndex)
+        });
     }
 
-    //render
+    const concatItems = () => {
+        setPageCounter(pageCounter + 1)
+        setRenderList(prev => {
+            return [...prev, ...dataSource.slice(initRenderCountOfItems + pageCounter * countOfBufferNodes, initRenderCountOfItems + (pageCounter + 1) * countOfBufferNodes)]
+        })
+    }
+
+    // ---------- render ----------
     return (
         <div
             className='container'
@@ -72,19 +66,27 @@ const Virtual: React.FC<VirtualProps> = (props) => {
                 className='wrapper'
                 style={{ height: dataSource.length * itemHeight }}
             >
-                {React.Children.map(renderList.current.slice(startIndex, endIndex), (item, index) => {
-                    return React.cloneElement(item,
-                        {
-                            className: 'scroll-item',
-                            style: {
-                                position: 'absolute',
-                                left: 0,
-                                top: 0,
-                                transform: `translateY(${(startIndex + index) * itemHeight}px)`,
+                {React.Children.map(renderList.slice(
+                    startIndex - countOfBufferNodes < 0
+                        ? startIndex
+                        : startIndex - countOfBufferNodes,
+                    endIndex + countOfBufferNodes > dataSource.length
+                        ? endIndex
+                        : endIndex + countOfBufferNodes),
+                    (item, index) => {
+                        return React.cloneElement(item,
+                            {
+                                className: 'scroll-item',
+                                style: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 0,
+                                    height: `${itemHeight}px`,
+                                    transform: `translateY(${(startIndex + index) * itemHeight}px)`,
+                                }
                             }
-                        }
-                    )
-                })}
+                        )
+                    })}
             </div>
         </div>
     )
