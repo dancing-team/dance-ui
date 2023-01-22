@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { useCallback } from 'react'
-import './script/iconfont.js'
 import { IconTypes } from './type'
+import { useMount } from 'react-use'
 
 export type IconProps = {
   /** 图标唯一类型 */
@@ -17,7 +17,7 @@ export type IconProps = {
   /** 组件额外的 CSS style */
   style?: React.CSSProperties
   /** 自定义图标来源 若自定义则不按照图标类型来 */
-  iconUrl?: string //
+  iconUrl?: string
 }
 
 const IconFont: React.FunctionComponent<IconProps> = ({ type, style, className, onClick }) => {
@@ -27,16 +27,18 @@ const IconFont: React.FunctionComponent<IconProps> = ({ type, style, className, 
     </svg>
   )
 }
-
 const Icon = ({ show, href, className, iconUrl, onClick, ...attr }: IconProps): JSX.Element => {
   const _onClick = useCallback(
     (e: React.MouseEvent<SVGElement>): void => {
       onClick?.(e)
-      href && window.open(href, '_blank')
+      href && window?.open(href, '_blank')
     },
     [href, onClick],
   )
-
+  useMount(() => {
+    import('./script/iconfont.js' as any)
+    console.log('mounted')
+  })
   return <>{show && <IconFont onClick={_onClick} className={classNames('cursor-pointer', className)} {...attr} />}</>
 }
 Icon.defaultProps = {
