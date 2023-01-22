@@ -31,3 +31,24 @@ React 18 会自动导入
 [remote: Permission to git denied to github-actions[bot]. #96](https://github.com/ad-m/github-push-action/issues/96)
 
 换成 git token 或提升权限
+
+## Cannot read properties of null (reading 'useCallback')
+
+react_devtools_backend.js:4012
+Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+
+react.development.js?6237:1646
+Uncaught TypeError: Cannot read properties of null (reading 'useCallback')
+at useCallback (react.development.js?6237:1646:1)
+at Icon (dance-ui.es.js?b4ad:953:1)
+
+- [警告：非法 Hook 调用 – React (reactjs.org)](https://zh-hans.reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react) 将组件库的 React 和 react-dom 版本换到 和文档站一样的就 ok 了
+
+```bash
+pnpm upgrade react@^17.0.2 -w
+pnpm upgrade react-dom@^17.0.2 -w
+```
