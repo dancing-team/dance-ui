@@ -52,3 +52,26 @@ at Icon (dance-ui.es.js?b4ad:953:1)
 pnpm upgrade react@^17.0.2 -w
 pnpm upgrade react-dom@^17.0.2 -w
 ```
+
+## ReferenceError: window is not defined
+
+文档站打包时报错：
+
+```bash
+[ERROR] Docusaurus server-side rendering could not render static page with path /docs/components/Icon.
+
+ReferenceError: window is not defined
+ReferenceError: Cannot access 'IconNames' before initialization
+[ERROR] Unable to build website for locale zh-Hans.
+[ERROR] Error: Failed to compile with errors.
+```
+
+原因是直接引入的 iconfont.js 中使用了 window，改为挂载后再使用
+
+```typescript
+// ...
+useMount(() => {
+  import('./script/iconfont.js' as any)
+  console.log('mounted')
+})
+```
