@@ -1,11 +1,11 @@
 import { ReactElement, useState } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button } from '@dance-ui/ui'
+import { Button, Icon } from '@dance-ui/ui'
 import './App.css'
+import { IconNames } from '@dance-ui/ui'
+import { IconTypes } from '@dance-ui/ui/dist/Icon'
 
 const App = (): ReactElement => {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
       <div>
@@ -16,17 +16,16 @@ const App = (): ReactElement => {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Demo</h1>
       <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1)
-          }}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <Icon type="loading" style={{ fontSize: 46, color: 'black' }} href={'https://github.com/yusixian/cosine-ui'} />
+        <div>
+          Icons:{' '}
+          {IconNames?.map((str: IconTypes) => (
+            <Icon type={str} style={{ fontSize: 46, color: 'red' }} />
+          ))}
+        </div>
+
         <Button
           size="large"
           onClick={() => {
