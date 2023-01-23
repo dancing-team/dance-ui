@@ -326,6 +326,11 @@ module.exports = {
 npx create-docusaurus@latest example classic --typescript
 ```
 
+### vercel 部署
+
+- [部署到 Vercel](https://docusaurus.io/zh-CN/docs/deployment#deploying-to-vercel)
+- [Monorepos - Vercel](https://vercel.com/docs/concepts/monorepos)
+
 ### npm 发包
 
 在 packages/components/package.json 中加入发布脚本 pub， 利用 npm publish 进行发布
@@ -372,14 +377,11 @@ preinstall 只允许 pnpm
 
 #### 使用 changeset version 提交版本修改
 
-<<<<<<< Updated upstream
 changesets 使用：[使用 Changesets 自动版本管理](https://github.com/ChelesteWang/learn-monorepo#%E4%BD%BF%E7%94%A8-changesets-%E8%87%AA%E5%8A%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86)
 
 - [Changesets: 流行的 monorepo 场景发包工具](https://zhuanlan.zhihu.com/p/427588430)
-- # 根目录下安装 @changesets/cli 并初始化
-- [部署到 Vercel](https://docusaurus.io/zh-CN/docs/deployment#deploying-to-vercel)
-- [Monorepos - Vercel](https://vercel.com/docs/concepts/monorepos)
-  > > > > > > > Stashed changes
+
+根目录下安装 @changesets/cli 并初始化
 
 ```bash
 pnpm install @changesets/cli -w -D  && npx changeset init
@@ -456,3 +458,55 @@ cd scripts
 - 组件模板： [packages/new-component/templates](https://github.com/dancing-team/dance-ui/tree/main/packages/new-component/templates)
 
 ![1674210423890](assets/1674210423890.png)
+
+## 组件开发
+
+### Icon 图标
+
+使用 Iconfont Symbol 方式引入：[iconfont](https://www.iconfont.cn/help/detail?spm=a313x.7781069.1998910419.d8cf4382a&helptype=code)
+
+- 添加到 iconfont 项目时记得进行一键去色
+
+步骤
+
+![image-20230120202759875](assets/image-20230120202759875.png)
+
+添加新项目
+
+![image-20230120202922146](assets/image-20230120202922146.png)
+
+找到合适的图标添加入项目后，进行一键去色，方便后续自定义图标颜色（针对单色图标）
+
+![image-20230120203135956](assets/image-20230120203135956.png)
+
+下载至本地，将其中的 iconfont.js 拿出来放到项目中（
+
+![image-20230120203208122](assets/image-20230120203208122.png)
+
+在全局 css 中加入
+
+```css
+@layer base {
+  .dd__icon {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: -0.15em;
+    fill: currentColor;
+  }
+}
+```
+
+在 Icon 组件中如此使用即可
+
+```tsx
+import './script/iconfont.js'
+
+const IconFont: React.FunctionComponent<IconProps> = ({ type, style, className, onClick }) => {
+  return (
+    <svg className={classNames(`dd__icon`, className)} style={style} aria-hidden="true" onClick={onClick}>
+      <use xlinkHref={`#icon-${type}`}></use>
+    </svg>
+  )
+}
+```

@@ -1,11 +1,27 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button } from '@dance-ui/ui'
+import { Button, Icon } from '@dance-ui/ui'
 import './App.css'
+import { IconType } from '@dance-ui/ui'
 
 const App = (): ReactElement => {
-  const [count, setCount] = useState(0)
-
+  const renderAllIcon = () => {
+    const icons = []
+    for (const key in IconType) {
+      const value = (IconType as any)[key]
+      icons.push(value)
+    }
+    return (
+      <>
+        {icons.map((icon) => (
+          <div key={icon}>
+            {icon}:
+            <Icon type={icon} style={{ fontSize: 46, color: 'black' }} href={'https://github.com/dancing-team/dance-ui'} />
+          </div>
+        ))}
+      </>
+    )
+  }
   return (
     <div className="App">
       <div>
@@ -16,17 +32,9 @@ const App = (): ReactElement => {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Demo</h1>
       <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1)
-          }}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <div>Icons {renderAllIcon()}</div>
         <Button
           size="large"
           onClick={() => {
