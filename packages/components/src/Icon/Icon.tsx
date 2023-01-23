@@ -1,11 +1,11 @@
 import classNames from 'classnames'
 import React, { useCallback } from 'react'
-import { IconTypes } from './type'
 import { useMount } from 'react-use'
+import { IconType } from './type'
 
 export type IconProps = {
   /** 图标唯一类型 */
-  type: IconTypes
+  type: IconType
   /** 图标点击事件 */
   onClick?: (e: React.MouseEvent<SVGElement>) => void
   /** 图标显示与否 */

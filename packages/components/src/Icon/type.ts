@@ -1,2 +1,6 @@
-export const IconNames = ['loading', 'search', 'close', 'delete'] as const
-export type IconTypes = (typeof IconNames)[number]
+export enum IconType {
+  LOADING = 'loading',
+  SEARCH = 'search',
+  CLOSE = 'close',
+  DELETE = 'delete',
+}

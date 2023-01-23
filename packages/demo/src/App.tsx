@@ -1,11 +1,27 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import reactLogo from './assets/react.svg'
 import { Button, Icon } from '@dance-ui/ui'
 import './App.css'
-import { IconNames } from '@dance-ui/ui'
-import { IconTypes } from '@dance-ui/ui/dist/Icon'
+import { IconType } from '@dance-ui/ui'
 
 const App = (): ReactElement => {
+  const renderAllIcon = () => {
+    const icons = []
+    for (const key in IconType) {
+      const value = (IconType as any)[key]
+      icons.push(value)
+    }
+    return (
+      <>
+        {icons.map((icon) => (
+          <div key={icon}>
+            {icon}:
+            <Icon type={icon} style={{ fontSize: 46, color: 'black' }} href={'https://github.com/dancing-team/dance-ui'} />
+          </div>
+        ))}
+      </>
+    )
+  }
   return (
     <div className="App">
       <div>
@@ -18,14 +34,7 @@ const App = (): ReactElement => {
       </div>
       <h1>Demo</h1>
       <div className="card">
-        <Icon type="loading" style={{ fontSize: 46, color: 'black' }} href={'https://github.com/yusixian/cosine-ui'} />
-        <div>
-          Icons:{' '}
-          {IconNames?.map((str: IconTypes) => (
-            <Icon type={str} style={{ fontSize: 46, color: 'red' }} />
-          ))}
-        </div>
-
+        <div>Icons {renderAllIcon()}</div>
         <Button
           size="large"
           onClick={() => {

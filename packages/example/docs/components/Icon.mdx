@@ -1,5 +1,6 @@
-import { Icon } from '@dance-ui/ui'
-import { IconNames } from '@dance-ui/ui'
+import { Icon, IconType } from '@dance-ui/ui'
+import ComponentSource from '!!raw-loader!../../../components/src/Icon/Icon'
+import CodeBlock from '@theme/CodeBlock'
 
 # Icon
 
@@ -8,14 +9,12 @@ import { IconNames } from '@dance-ui/ui'
 利用 iconfont 下载下来的 js，以 symbol 形式引用，因此会根据当前字体颜色和大小改变 icon 的颜色和大小
 
 <DemoBlock>
-  Icons:{' '}
-  {IconNames?.map((str) => (
-    <Icon type={str} style={{ fontSize: 46 }} />
-  ))}
-  {IconNames?.map((str) => (
-    <Icon type={str} style={{ fontSize: 46, color: 'blue' }} />
-  ))}
+  Icons: <Icon type={IconType.LOADING} style={{ fontSize: 46, color: 'black' }} />
 </DemoBlock>
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>
 
 ## 演示
 
