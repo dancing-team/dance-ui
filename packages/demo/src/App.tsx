@@ -3,8 +3,32 @@ import reactLogo from './assets/react.svg'
 import { Button, Icon } from '@dance-ui/ui'
 import './App.css'
 import { IconType } from '@dance-ui/ui'
+import { FloatButtonGroup } from '@dance-ui/ui'
 
 const App = (): ReactElement => {
+  const option = [
+    {
+      description: "hhh"
+    },
+    {
+    },
+    {
+      description: "为你推荐",
+      action: {
+        href: "www.baidu.com",
+        target: '_blank'
+      }
+    },
+    {
+      description: "hhh"
+    },
+    {
+      description: "hhh"
+    },
+    {
+      description: "hhh"
+    },
+  ]
   const renderAllIcon = () => {
     const icons = []
     for (const key in IconType) {
@@ -50,6 +74,8 @@ const App = (): ReactElement => {
           large
         </Button>
       </div>
+      <FloatButtonGroup options={option}></FloatButtonGroup>
+      <a href='jirafdsn.com'>123</a>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </div>
   )
