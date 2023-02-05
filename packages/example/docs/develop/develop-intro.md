@@ -123,7 +123,7 @@ pnpm add eslint-config-prettier eslint-plugin-prettier -D
 }
 ```
 
-到此，就已经把基础的环境搭的差不多了，运行 pnpm dev 可以看到![](https://nf2pjr3e5t.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmEyZTEwMjE0YzM3OWQ5ZmU0YzM1M2UxMGRmYmM2MzJfZzFldjNya0x2SEt0d3dKMTB0RWZMclNXSVVlaDVidXZfVG9rZW46Ym94Y25yZ3B2U3dXNWxOSldGZTh5OTc2MnhoXzE2NzM3MTA4NTc6MTY3MzcxNDQ1N19WNA)
+再加个新的插件：[eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) 自动
 
 ### Tailwind & postcss
 
@@ -326,6 +326,11 @@ module.exports = {
 npx create-docusaurus@latest example classic --typescript
 ```
 
+### vercel 部署
+
+- [部署到 Vercel](https://docusaurus.io/zh-CN/docs/deployment#deploying-to-vercel)
+- [Monorepos - Vercel](https://vercel.com/docs/concepts/monorepos)
+
 ### npm 发包
 
 在 packages/components/package.json 中加入发布脚本 pub， 利用 npm publish 进行发布
@@ -370,10 +375,13 @@ preinstall 只允许 pnpm
 
 [preinstall](https://docs.npmjs.com/cli/v6/using-npm/scripts#pre--post-scripts) 脚本会在 install 之前执行，现在，只要有人运行 `npm install` 或 `yarn install`，就会调用 [only-allow](https://github.com/pnpm/only-allow) 去限制只允许使用 pnpm 安装依赖。
 
+#### 使用 changeset version 提交版本修改
+
 changesets 使用：[使用 Changesets 自动版本管理](https://github.com/ChelesteWang/learn-monorepo#%E4%BD%BF%E7%94%A8-changesets-%E8%87%AA%E5%8A%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86)
 
 - [Changesets: 流行的 monorepo 场景发包工具](https://zhuanlan.zhihu.com/p/427588430)
-- 根目录下安装 @changesets/cli 并初始化
+
+根目录下安装 @changesets/cli 并初始化
 
 ```bash
 pnpm install @changesets/cli -w -D  && npx changeset init
@@ -394,8 +402,6 @@ Y：次版本号，功能性的改动，minor
 Z：修订版本号，问题修复，patch
 每个部分为整数（>=0），按照递增的规则改变。
 
-使用 changeset version 提交版本修改
-
 `npx changeset version`
 
 ![1674143438972](assets/1674143438972.png)
@@ -409,3 +415,98 @@ NPM_TOKEN 的获取
 在 npm 官网 生成 Npm 私钥，注意选择 Automation
 
 ![1674142424970](assets/1674142424970.png)
+
+### 编写 new 脚本 新建组件框架
+
+- [React 组件库搭建指南（五）：标准化发布流程](https://github.com/worldzhao/blog/issues/7)
+
+思路如下：
+
+- 创建组件模板，预留动态信息插槽（组件名称，组件描述等等）；
+- 基于 inquirer.js 询问动态信息；
+- 将信息插入模板，渲染至 components 文件夹下；
+- 向 components/index.ts 插入导出语句。
+
+新建 add-component 子包 安装 plop
+
+```bash
+mkdir packages/add-component
+cd  packages/add-component
+pnpm init
+pnpm add -D plop
+```
+
+新增 scripts 和 templates 文件夹用于存放脚本和模板
+
+```bash
+mkdir scripts && mkdir templates
+cd scripts
+```
+
+新增 new 脚本
+
+```json
+// packages/add-component/package.json
+"scripts": {
++ "new": "plop --plopfile ./scripts/plopfile.js"
+},
+```
+
+接下来就是编写配置文件和组件模板了，见
+
+- 配置文件： [packages/new-component/scripts/plopfile.js](https://github.com/dancing-team/dance-ui/tree/main/packages/new-component/scripts/plopfile.js)
+- 组件模板： [packages/new-component/templates](https://github.com/dancing-team/dance-ui/tree/main/packages/new-component/templates)
+
+![1674210423890](assets/1674210423890.png)
+
+## 组件开发
+
+### Icon 图标
+
+使用 Iconfont Symbol 方式引入：[iconfont](https://www.iconfont.cn/help/detail?spm=a313x.7781069.1998910419.d8cf4382a&helptype=code)
+
+- 添加到 iconfont 项目时记得进行一键去色
+
+步骤
+
+![image-20230120202759875](assets/image-20230120202759875.png)
+
+添加新项目
+
+![image-20230120202922146](assets/image-20230120202922146.png)
+
+找到合适的图标添加入项目后，进行一键去色，方便后续自定义图标颜色（针对单色图标）
+
+![image-20230120203135956](assets/image-20230120203135956.png)
+
+下载至本地，将其中的 iconfont.js 拿出来放到项目中（
+
+![image-20230120203208122](assets/image-20230120203208122.png)
+
+在全局 css 中加入
+
+```css
+@layer base {
+  .dd__icon {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    vertical-align: -0.15em;
+    fill: currentColor;
+  }
+}
+```
+
+在 Icon 组件中如此使用即可
+
+```tsx
+import './script/iconfont.js'
+
+const IconFont: React.FunctionComponent<IconProps> = ({ type, style, className, onClick }) => {
+  return (
+    <svg className={classNames(`dd__icon`, className)} style={style} aria-hidden="true" onClick={onClick}>
+      <use xlinkHref={`#icon-${type}`}></use>
+    </svg>
+  )
+}
+```
