@@ -2,17 +2,30 @@
 sidebar_position: 1
 ---
 
-import { Button } from '@dance-ui/ui'
+import ComponentSource from '!!raw-loader!../../../components/src/Space/Space'
+import { Button, Space } from '@dance-ui/ui'
 
 # Button
 
-xxxxxxxxxxxx
+按钮组件
 
-<DemoBlock>
-  <Button size="large" onClick={() => alert('hello')}>
-    Button
-  </Button>
-  <Button size="large" onClick={() => alert('hello')}>
-    Button
-  </Button>
+import DemoSrc from '!!raw-loader!../../../components/src/Button/demo'
+import Demo from '../../../components/src/Button/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
 </DemoBlock>
+
+## 演示
+
+### type
+
+默认为 `default` 按钮
+
+`default` 表示默认按钮，`primary` 表示主要按钮，`link` 表示无边框按钮， `unstyle` 表示不带任何样式的按钮（方便自己定制）
+
+## 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

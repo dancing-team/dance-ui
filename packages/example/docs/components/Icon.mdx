@@ -1,6 +1,9 @@
+---
+sidebar_position: 2
+---
+
 import { Icon, IconType } from '@dance-ui/ui'
 import ComponentSource from '!!raw-loader!../../../components/src/Icon/Icon'
-import CodeBlock from '@theme/CodeBlock'
 
 # Icon
 
@@ -12,12 +15,17 @@ import CodeBlock from '@theme/CodeBlock'
   Icons: <Icon type={IconType.LOADING} style={{ fontSize: 46, color: 'black' }} />
 </DemoBlock>
 
+## 所有图标
+
+import DemoSrc from '!!raw-loader!../../../components/src/Icon/demo'
+import Demo from '../../../components/src/Icon/demo'
+
+<DemoBlock title="1211" src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+## 组件源码
+
 <CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
   {ComponentSource}
 </CodeBlock>
-
-## 演示
-
-### 所有图标
-
-## 组件源码
