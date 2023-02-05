@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button, Icon, Space, IconType } from '@dance-ui/ui'
+import { Button, Icon, Space, IconType, Loading } from '@dance-ui/ui'
 import './App.css'
 
 const App = (): ReactElement => {
@@ -33,6 +33,7 @@ const App = (): ReactElement => {
       </div>
       <h1>Demo</h1>
       <div className="card">
+        <Loading iconType={IconType.CLOSE} />
         <div>Icons {renderAllIcon()}</div>
         <Space justify="center" direction="vertical" align="center">
           <Space gap="large" style={{ backgroundColor: 'red' }}>

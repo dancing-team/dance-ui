@@ -41,7 +41,7 @@ const Icon = ({ show, href, className, iconUrl, onClick, ...attr }: IconProps): 
   return (
     <>
       {show && (
-        <IconFont onClick={_onClick} className={classNames({ 'cursor-pointer': href ?? onClick }, className)} {...attr} />
+        <IconFont onClick={_onClick} className={classNames({ 'cursor-pointer': href || onClick }, className)} {...attr} />
       )}
     </>
   )
