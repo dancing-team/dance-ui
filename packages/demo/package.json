@@ -1,7 +1,7 @@
 {
   "name": "@dance-ui/demo",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@dance-ui/ui": "workspace:^0.0.2"
+    "@dance-ui/ui": "workspace:^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
