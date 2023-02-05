@@ -9,26 +9,25 @@ export type LoadingProps = {
   iconType?: IconType
   /** 自定义Loading图标 */
   renderIcon?: () => ReactNode
-  /** 图标额外的 CSS className */
-  className?: string
-  /** 图标额外的 CSS style */
-  style?: React.CSSProperties
   /** 旋转容器额外的 CSS className */
-  wrapperClass?: string
+  className?: string
   /** 旋转容器额外的 CSS style */
-  wrapperStyle?: React.CSSProperties
+  style?: React.CSSProperties
+  /** 图标额外的 CSS className */
+  iconClassName?: string
+  /** 图标容器额外的 CSS style */
+  iconStyle?: React.CSSProperties
 }
 
-const Loading = ({ show, iconType, renderIcon, className, style, wrapperClass, wrapperStyle }: LoadingProps): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const Loading = ({ show, iconType, renderIcon, className, style, iconClassName, iconStyle }: LoadingProps): JSX.Element => {
   const _renderIcon = (): ReactNode => {
     if (renderIcon) return renderIcon()
-    return <Icon type={iconType ?? IconType.LOADING} className={className} style={style} />
+    return <Icon type={iconType ?? IconType.LOADING} className={iconClassName} style={iconStyle} />
   }
   return (
     <>
       {show ? (
-        <div className={classNames('inline-block animate-spin', wrapperClass)} style={wrapperStyle}>
+        <div className={classNames('inline-block animate-spin text-base', className)} style={style}>
           {_renderIcon()}
         </div>
       ) : null}
