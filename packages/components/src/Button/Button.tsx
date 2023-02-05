@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { CSSProperties, forwardRef, LegacyRef, ReactNode } from 'react'
+import { CSSProperties, forwardRef, LegacyRef, ReactNode, useMemo } from 'react'
 import Loading, { LoadingProps } from '../Loading'
 
 export type ButtonProps = {
@@ -31,27 +31,30 @@ export type ButtonProps = {
   /** Loading图标参数 */
   loadingIconProps?: LoadingProps
 }
-const typeClass = {
-  default: 'text-black bg-white border-gray-500  enabled:hover:border-blue-500 enabled:hover:text-blue-500',
-  primary: 'bg-blue-500 border-blue-500 text-white enabled:hover:bg-blue-400 enabled:hover:border-blue-400',
-  link: 'border-transparent enabled:hover:text-blue-500',
+
+const ButtonClass = {
+  sizeClass: {
+    large: 'py-2 px-5',
+    middle: 'py-1 px-4',
+    small: 'px-1',
+  },
+  typeClass: {
+    default: 'border-black bg-white text-black enabled:hover:border-dd-primary enabled:hover:text-dd-primary',
+    primary: 'border-dd-primary bg-dd-primary text-white enabled:hover:opacity-80',
+    link: 'border-transparent enabled:hover:text-dd-primary',
+  },
+  ghostClass: {
+    default: 'border-white text-white enabled:hover:border-dd-primary enabled:hover:text-dd-primary',
+    primary: 'border-dd-primary bg-transparent text-dd-primary enabled:hover:opacity-80',
+    link: 'border-transparent text-white enabled:hover:text-dd-primary',
+  },
+  dangerClass: {
+    default: 'border-dd-danger text-dd-danger enabled:hover:opacity-80',
+    primary: 'border-dd-danger bg-dd-danger text-white enabled:hover:opacity-80',
+    link: 'border-transparent text-dd-danger enabled:hover:opacity-80',
+  },
 }
-const ghostClass = {
-  default: 'border-white text-white enabled:hover:border-blue-500 enabled:hover:text-blue-500',
-  primary: 'bg-transparent text-blue-500 border-blue-500 enabled:hover:text-blue-400 enabled:hover:border-blue-400',
-  link: 'border-transparent text-white enabled:hover:text-blue-500',
-}
-const dangerClass = {
-  default: 'text-red-500 border-red-500 enabled:hover:border-red-400 enabled:hover:text-red-400',
-  primary:
-    'bg-red-500 text-[#fff] border-red-500 enabled:hover:bg-red-400 enabled:hover:text-[#fff] enabled:hover:border-red-400',
-  link: 'text-red-500 enabled:hover:text-red-400',
-}
-const sizeClass = {
-  large: 'py-2 px-5',
-  middle: 'py-1 px-4',
-  small: 'px-1',
-}
+
 const Button = forwardRef(function ButtonInner(
   {
     type,
@@ -69,7 +72,13 @@ const Button = forwardRef(function ButtonInner(
   }: ButtonProps,
   ref: LegacyRef<HTMLButtonElement>,
 ) {
+  const { sizeClass, typeClass, dangerClass, ghostClass } = ButtonClass
   const _disabled = disabled || loading
+  const _chooseClass = useMemo(() => {
+    if ((danger && ghost) || danger) return dangerClass
+    else if (ghost) return ghostClass
+    else return typeClass
+  }, [danger, dangerClass, ghost, ghostClass, typeClass])
   return (
     <button
       ref={ref}
@@ -79,9 +88,8 @@ const Button = forwardRef(function ButtonInner(
           : classNames(
               'box-border border transition focus:outline-none',
               sizeClass[size ?? 'middle'],
-              ghost ? ghostClass[type ?? 'default'] : typeClass[type ?? 'default'],
-              danger ? dangerClass[type ?? 'default'] : null,
-              _disabled ? 'disabled:cursor-not-allowed disabled:opacity-60' : null,
+              _chooseClass[type ?? 'default'],
+              _disabled ? 'disabled:cursor-not-allowed disabled:opacity-60' : 'cursor-pointer',
               className,
             )
       }
