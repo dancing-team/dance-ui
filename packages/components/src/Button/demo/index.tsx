@@ -1,8 +1,8 @@
+import { Button } from '@dance-ui/ui'
 import React from 'react'
-import { Button, Icon, Space, IconType } from '@dance-ui/ui'
 
 export default () => (
-  <Space>
+  <>
     <Button type="default" onClick={() => console.log('click Default!')}>
       Default
     </Button>
@@ -21,5 +21,5 @@ export default () => (
     <Button type="primary" ghost danger onClick={() => console.log('click primary Ghost!')}>
       Ghost
     </Button>
-  </Space>
+  </>
 )
