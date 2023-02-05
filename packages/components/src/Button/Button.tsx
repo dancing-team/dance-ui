@@ -37,15 +37,15 @@ const typeClass = {
   link: 'border-transparent enabled:hover:text-blue-500',
 }
 const ghostClass = {
-  default: 'border-white text-white  enabled:hover:border-blue-500 enabled:hover:text-blue-500',
-  primary: 'bg-transparent text-blue-500 border-blue-500  enabled:hover:text-blue-400 enabled:hover:border-blue-400',
-  link: 'border-transparent text-white hover:text-blue-500',
+  default: 'border-white text-white enabled:hover:border-blue-500 enabled:hover:text-blue-500',
+  primary: 'bg-transparent text-blue-500 border-blue-500 enabled:hover:text-blue-400 enabled:hover:border-blue-400',
+  link: 'border-transparent text-white enabled:hover:text-blue-500',
 }
 const dangerClass = {
-  default: 'text-red-500 border-red-500  enabled:hover:border-red-400 enabled:hover:text-red-400',
+  default: 'text-red-500 border-red-500 enabled:hover:border-red-400 enabled:hover:text-red-400',
   primary:
     'bg-red-500 text-[#fff] border-red-500 enabled:hover:bg-red-400 enabled:hover:text-[#fff] enabled:hover:border-red-400',
-  link: 'text-red-500  enabled:hover:text-red-400',
+  link: 'text-red-500 enabled:hover:text-red-400',
 }
 const sizeClass = {
   large: 'py-2 px-5',
