@@ -1,8 +1,7 @@
 import { ReactElement } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button, Icon } from '@dance-ui/ui'
+import { Button, Icon, Space, IconType } from '@dance-ui/ui'
 import './App.css'
-import { IconType } from '@dance-ui/ui'
 
 const App = (): ReactElement => {
   const renderAllIcon = () => {
@@ -35,6 +34,26 @@ const App = (): ReactElement => {
       <h1>Demo</h1>
       <div className="card">
         <div>Icons {renderAllIcon()}</div>
+        <Space justify="center" direction="vertical" align="center">
+          <Space gap="large" style={{ backgroundColor: 'red' }}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+          </Space>
+          <Space gap="middle" style={{ backgroundColor: 'blue' }}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+          </Space>
+          <Space direction="vertical">
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+          </Space>
+        </Space>
         <Button
           size="large"
           onClick={() => {
