@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .icon {
+  .dd__icon {
     width: 1em;
     height: 1em;
     overflow: hidden;

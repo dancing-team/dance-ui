@@ -1,11 +1,38 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# Space
+import ComponentSource from '!!raw-loader!../../../components/src/Space/Space'
+import { Space, Button } from '@dance-ui/ui'
 
-xxxxxxxxxxxx
+## Space 间距
 
-import { Button } from '@dance-ui/ui'
+设置组件之间的间距
 
-<Button onClick={() => alert('hello')}>Button</Button>
+### 代码演示
+
+#### 基本使用
+
+import DemoSrc from '!!raw-loader!../../../components/src/Space/demo'
+import Demo from '../../../components/src/Space/demo'
+
+<DemoBlock title="基本使用" src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### API
+
+| 属性名    | 描述                                            | 类型            | 默认值      |
+| --------- | ----------------------------------------------- | --------------- | ----------- | ------------ | ---------- | ---------- | --------- |
+| direction | 水平/垂直排列                                   | `"horizontal"   | "vertical"` | `horizontal` |
+| justify   | 主轴对齐方式 justify-content                    | `"start"        | "center"    | "end"        | "between"  | "around"`  | `start`   |
+| align     | 交叉轴对齐方式 align-items                      | `"start"        | "center"    | "end"        | "baseline" | "stretch"` | `stretch` |
+| gap       | 间距大小 gap，有 3 预设可选，也可自行选择 px 值 | `number         | "small"     | "middle"     | "large"`   | `middle`   |
+| className | 组件额外的 CSS className                        | `string`        | `--`        |
+| style     | 组件额外的 CSS style                            | `CSSProperties` | `--`        |
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

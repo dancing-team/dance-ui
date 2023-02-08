@@ -1,0 +1,37 @@
+---
+sidebar_position: 2
+---
+
+import { Icon, IconType, Space } from '@dance-ui/ui'
+import ComponentSource from '!!raw-loader!../../../components/src/Icon/Icon'
+
+# Icon
+
+[IconFont 图标库地址](https://www.iconfont.cn/manage/index?manage_type=myprojects&projectId=3868223)
+
+利用 iconfont 下载下来的 js，以 symbol 形式引用，因此会根据当前字体颜色和大小改变 icon 的颜色和大小
+
+<DemoBlock>
+  <Icon type={IconType.LOADING} style={{ fontSize: 46, color: 'black' }} />
+  <Icon type={IconType.LOADING} style={{ fontSize: 30, color: 'red' }} />
+</DemoBlock>
+
+```tsx
+<Icon type={IconType.LOADING} style={{ fontSize: 46, color: 'black' }} />
+<Icon type={IconType.LOADING} style={{ fontSize: 30, color: 'red' }} />
+```
+
+## 所有图标
+
+import DemoSrc from '!!raw-loader!../../../components/src/Icon/demo'
+import Demo from '../../../components/src/Icon/demo'
+
+<DemoBlock title="所有图标" src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+## 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>
