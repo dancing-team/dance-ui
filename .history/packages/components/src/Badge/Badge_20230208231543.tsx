@@ -25,8 +25,8 @@ export type BadgeProps = {
 }
 
 const sizeStyle = {
-  default: 'h-5 w-5 text-xs',
-  small: 'h-4 w-4 text-xs',
+  default: 'h-4 w-4 text-xs',
+  small: 'h-3 w-3 text-xs',
 }
 
 const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
@@ -59,50 +59,41 @@ const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
   }
 
   const countStyle = (): React.CSSProperties => {
+    // console.log(1)
     const length: number = String(computedCount()).length
-    if (length === 1) {
+    if(length===1){
+
+    }
+    if (size === 'default') {
       return {
-        borderRadius: '50%',
+        width: `${length * 0.5 + 0.75}rem`,
+        borderRadius: '20px',
       }
     } else {
-      if (size === 'default') {
-        return {
-          width: `${length * 0.5 + 0.75}rem`,
-          borderRadius: '20px',
-        }
-      } else {
-        return {
-          width: `${length * 0.4 + 0.75}rem`,
-          borderRadius: '20px',
-        }
+      return {
+        width: `${length * 0.4 + 0.75}rem`,
+        borderRadius: '20px',
       }
     }
   }
 
   const countRight = (): number => {
     const length: number = String(computedCount()).length
-    if (length === 1) {
-      if (offset) {
-        return size === 'default' ? -offset[0] - 10 : -offset[0] - 8
-      } else {
-        return size === 'default' ? -10 : -8
-      }
+    if (offset) {
+      return size === 'default' ? -offset[1] - (length * 0.5 + 0.75) * 8 : -offset[1] - (length * 0.5 + 0.75) * 8
     } else {
-      if (offset) {
-        return size === 'default' ? -offset[0] - (length * 0.5 + 0.75) * 8 : -offset[0] - (length * 0.4 + 0.75) * 8
-      } else {
-        return size === 'default' ? -(length * 0.5 + 0.75) * 8 : -(length * 0.4 + 0.75) * 8
-      }
+      return size === 'default' ? -length * 8 : -6
     }
   }
 
   const countTop = (): number => {
     if (offset) {
-      return size === 'default' ? -offset[1] - 10 : -offset[1] - 8
+      return size === 'default' ? -offset[1] - 8 : -offset[1] - 6
     } else {
-      return size === 'default' ? -10 : -6
+      return size === 'default' ? -8 : -6
     }
   }
+  // console.log(children.props.children)
 
   const BadgeNode = React.Children.map(children, (c) => {
     return React.cloneElement(

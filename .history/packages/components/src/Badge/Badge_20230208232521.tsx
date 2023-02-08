@@ -59,6 +59,7 @@ const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
   }
 
   const countStyle = (): React.CSSProperties => {
+    // console.log(1)
     const length: number = String(computedCount()).length
     if (length === 1) {
       return {
@@ -83,13 +84,13 @@ const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
     const length: number = String(computedCount()).length
     if (length === 1) {
       if (offset) {
-        return size === 'default' ? -offset[0] - 10 : -offset[0] - 8
+        return size === 'default' ? -offset[1] - 10 : -offset[1] - 8
       } else {
         return size === 'default' ? -10 : -8
       }
     } else {
       if (offset) {
-        return size === 'default' ? -offset[0] - (length * 0.5 + 0.75) * 8 : -offset[0] - (length * 0.4 + 0.75) * 8
+        return size === 'default' ? -offset[1] - (length * 0.5 + 0.75) * 8 : -offset[1] - (length * 0.4 + 0.75) * 8
       } else {
         return size === 'default' ? -(length * 0.5 + 0.75) * 8 : -(length * 0.4 + 0.75) * 8
       }
@@ -100,9 +101,10 @@ const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
     if (offset) {
       return size === 'default' ? -offset[1] - 10 : -offset[1] - 8
     } else {
-      return size === 'default' ? -10 : -6
+      return size === 'default' ? -8 : -6
     }
   }
+  // console.log(children.props.children)
 
   const BadgeNode = React.Children.map(children, (c) => {
     return React.cloneElement(

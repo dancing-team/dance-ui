@@ -59,6 +59,7 @@ const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
   }
 
   const countStyle = (): React.CSSProperties => {
+    // console.log(1)
     const length: number = String(computedCount()).length
     if (length === 1) {
       return {
@@ -103,6 +104,7 @@ const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
       return size === 'default' ? -10 : -6
     }
   }
+  // console.log(children.props.children)
 
   const BadgeNode = React.Children.map(children, (c) => {
     return React.cloneElement(
