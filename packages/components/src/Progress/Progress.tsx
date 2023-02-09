@@ -42,8 +42,8 @@ const sizeClass = {
   middle: 'py-1 px-4',
   small: 'px-1',
 }
-const Button = React.forwardRef(function ButtonInner(
-  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<ButtonProps>,
+const Progress = React.forwardRef(function ButtonInner(
+  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<ProgressProps>,
   ref: LegacyRef<HTMLButtonElement>,
 ) {
   return (
@@ -68,9 +68,9 @@ const Button = React.forwardRef(function ButtonInner(
     </button>
   )
 })
-Button.defaultProps = {
+Progress.defaultProps = {
   type: 'default',
   size: 'middle',
   loading: false,
 }
-export default Button
+export default Progress

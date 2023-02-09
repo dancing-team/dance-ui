@@ -43,29 +43,32 @@ const sizeClass = {
   small: 'px-1',
 }
 const CountDown = React.forwardRef(function ButtonInner(
-  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<ButtonProps>,
+  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<CountDownProps>,
   ref: LegacyRef<HTMLButtonElement>,
 ) {
   return (
-    <button
-      className={
-        type === 'unstyle'
-          ? className
-          : classNames(
-              'box-border border transition focus:outline-none',
-              sizeClass[size ?? 'middle'],
-              danger ? dangerClass[type ?? 'default'] : null,
-              ghost ? ghostClass[type ?? 'default'] : typeClass[type ?? 'default'],
-              className,
-            )
-      }
-      style={style}
-      onClick={loading ? undefined : onClick}
-      ref={ref}
-      disabled={disabled}>
-      {/* <Loading show={loading} className="mr-2" /> */}
-      {children}
-    </button>
+    <div>
+       <button
+        className={
+          type === 'unstyle'
+            ? className
+            : classNames(
+                'box-border border transition focus:outline-none',
+                sizeClass[size ?? 'middle'],
+                danger ? dangerClass[type ?? 'default'] : null,
+                ghost ? ghostClass[type ?? 'default'] : typeClass[type ?? 'default'],
+                className,
+              )
+        }
+        style={style}
+        onClick={loading ? undefined : onClick}
+        ref={ref}
+        disabled={disabled}>
+        {/* <Loading show={loading} className="mr-2" /> */}
+        {children}
+      </button>
+      <div>CountDow</div>
+    </div>
   )
 })
 CountDown.defaultProps = {

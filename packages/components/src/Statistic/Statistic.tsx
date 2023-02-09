@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { LegacyRef } from 'react'
 
-export type ProgressProps = {
+export type StatisticProps = {
   /** 按钮类型 */
   type?: 'default' | 'primary' | 'link' | 'unstyle'
   /** 按钮大小 */
@@ -42,8 +42,8 @@ const sizeClass = {
   middle: 'py-1 px-4',
   small: 'px-1',
 }
-const Progress = React.forwardRef(function ButtonInner(
-  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<ButtonProps>,
+const Statistic = React.forwardRef(function ButtonInner(
+  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<StatisticProps>,
   ref: LegacyRef<HTMLButtonElement>,
 ) {
   return (
@@ -68,9 +68,9 @@ const Progress = React.forwardRef(function ButtonInner(
     </button>
   )
 })
-Progress.defaultProps = {
+Statistic.defaultProps = {
   type: 'default',
   size: 'middle',
   loading: false,
 }
-export default Progress
+export default Statistic

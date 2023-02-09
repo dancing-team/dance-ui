@@ -1,21 +1,21 @@
 import React from 'react'
-import Button from '../Button'
+import CountDown from '../CountDown'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const Demo = () => (
   <div>
-    <Button type="default" loading={true}>
+    <CountDown type="default" loading={true}>
       Default
-    </Button>
-    <Button type="primary" loading={true}>
+    </CountDown>
+    <CountDown type="primary" loading={true}>
       Primary
-    </Button>
-    <Button type="link" loading={true}>
+    </CountDown>
+    <CountDown type="link" loading={true}>
       Link
-    </Button>
-    <Button type="unstyle" loading={true}>
+    </CountDown>
+    <CountDown type="unstyle" loading={true}>
       Unstyle
-    </Button>
+    </CountDown>
   </div>
 )
 export default Demo

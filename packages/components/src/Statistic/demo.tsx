@@ -1,21 +1,21 @@
 import React from 'react'
-import Button from '../Button'
+import Statistic from '../Statistic'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const Demo = () => (
   <div>
-    <Button type="default" loading={true}>
+    <Statistic type="default" loading={true}>
       Default
-    </Button>
-    <Button type="primary" loading={true}>
+    </Statistic>
+    <Statistic type="primary" loading={true}>
       Primary
-    </Button>
-    <Button type="link" loading={true}>
+    </Statistic>
+    <Statistic type="link" loading={true}>
       Link
-    </Button>
-    <Button type="unstyle" loading={true}>
+    </Statistic>
+    <Statistic type="unstyle" loading={true}>
       Unstyle
-    </Button>
+    </Statistic>
   </div>
 )
 export default Demo
