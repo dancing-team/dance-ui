@@ -42,7 +42,7 @@ const sizeClass = {
   middle: 'py-1 px-4',
   small: 'px-1',
 }
-const Statistic = React.forwardRef(function ButtonInner(
+const Statistic = React.forwardRef(function StatisticInner(
   { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<StatisticProps>,
   ref: LegacyRef<HTMLButtonElement>,
 ) {
