@@ -4,7 +4,7 @@ import Statistic from '../Statistic'
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const Demo = () => (
   <div>
-    <Statistic type="default" loading={true}>
+    {/* <Statistic type="default" loading={true}>
       Default
     </Statistic>
     <Statistic type="primary" loading={true}>
@@ -15,7 +15,7 @@ const Demo = () => (
     </Statistic>
     <Statistic type="unstyle" loading={true}>
       Unstyle
-    </Statistic>
+    </Statistic> */}
   </div>
 )
 export default Demo

@@ -21,53 +21,17 @@ export type StatisticProps = {
   /** 组件额外的 CSS style */
   style?: React.CSSProperties
 }
-const typeClass = {
-  default: 'bg-white border-gray-500 hover:border-blue-500 hover:text-blue-500',
-  primary: 'bg-blue-500 border-blue-500 text-white hover:bg-blue-400 hover:border-blue-400',
-  link: 'border-transparent hover:text-blue-500',
-}
-const ghostClass = {
-  default: 'border-white text-white hover:border-blue-500 hover:text-blue-500',
-  primary: 'bg-transparent text-blue-500 border-blue-500 hover:text-blue-400 hover:border-blue-400',
-  link: 'border-transparent text-white hover:text-blue-500',
+
+const Statistic: React.FC = ({}: StatisticProps):JSX.Element => {
+  return (
+    <div>
+      
+    </div>
+  )
 }
 
-const dangerClass = {
-  default: 'text-red-500 border-red-500 hover:border-red-400 hover:text-red-400',
-  primary: 'bg-red-500 text-[#fff] border-red-500 hover:bg-red-400 hover:text-[#fff] hover:border-red-400',
-  link: 'text-red-500 hover:text-red-400',
-}
-const sizeClass = {
-  large: 'py-2 px-5',
-  middle: 'py-1 px-4',
-  small: 'px-1',
-}
-const Statistic = React.forwardRef(function StatisticInner(
-  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<StatisticProps>,
-  ref: LegacyRef<HTMLButtonElement>,
-) {
-  return (
-    <button
-      className={
-        type === 'unstyle'
-          ? className
-          : classNames(
-              'box-border border transition focus:outline-none',
-              sizeClass[size ?? 'middle'],
-              danger ? dangerClass[type ?? 'default'] : null,
-              ghost ? ghostClass[type ?? 'default'] : typeClass[type ?? 'default'],
-              className,
-            )
-      }
-      style={style}
-      onClick={loading ? undefined : onClick}
-      ref={ref}
-      disabled={disabled}>
-      {/* <Loading show={loading} className="mr-2" /> */}
-      {children}
-    </button>
-  )
-})
+
+
 Statistic.defaultProps = {
   type: 'default',
   size: 'middle',

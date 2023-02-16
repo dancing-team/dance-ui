@@ -8,7 +8,7 @@ type DemoBlockProps = {
 const DemoBlock = ({ children }: DemoBlockProps): JSX.Element => {
   return (
     <section className={styles.container}>
-      <div>Demo</div>
+      <div>{}</div>
       <div className={styles.demo}>{children}</div>
     </section>
   )

@@ -1,38 +1,48 @@
-import classNames from 'classnames'
-import React, { LegacyRef } from 'react'
+import React from 'react';
 
-export type ProgressProps = {
-  /** 按钮类型 */
-  type?: 'default' | 'primary' | 'link' | 'unstyle'
-  /** 按钮大小 */
-  size?: 'large' | 'middle' | 'small'
-  /** 点击事件 */
-  onClick?: () => void
-  /** 是否为危险按钮（红色警告） */
-  danger?: boolean
-  /** 是否为幽灵按钮 */
-  ghost?: boolean
-  /** 是否禁用 */
-  disabled?: boolean
-  /** 是否加载中 */
-  loading?: boolean
-  /** 组件额外的 CSS className */
-  className?: string
-  /** 组件额外的 CSS style */
-  style?: React.CSSProperties
+type stringKey = Record<string, string>
+
+export interface ProgressProps {
+    // 颜色 
+    color?: string;
+    // 文字颜色
+    textColor?: string;
+    // 进度
+    percent?: string;
+    // 显示文字
+    withBadge?: boolean;
+    // 文字内容
+    label?: string;
 }
 
-const Progress = React.forwardRef(function ProgressInner(
-  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<ProgressProps>,
-  ref: LegacyRef<HTMLButtonElement>,
-) {
-  return (
-    <div></div>
-  )
-})
-Progress.defaultProps = {
-  type: 'default',
-  size: 'middle',
-  loading: false,
+const progressClass: stringKey = {
+  '0': '0',
+  '1': '1/4',
+  '2': '1/2',
+  '3': '3/4',
+  '4': '4/4',
 }
-export default Progress
+
+const Progress:React.FC = (props: ProgressProps): JSX.Element => {
+    return (
+        <div>
+            <div className="block p-4 m-auto bg-white rounded-lg shadow w-72">
+                {props.withBadge && (
+                    <div>
+                        <span
+                            className={`text-xs font-light inline-block py-1 px-2 uppercase rounded-full`}
+                        >
+                            Task in progress
+                        </span>
+                    </div>
+                )}
+                <div className={`w-full h-2 bg-gray-400 rounded-full mt-3`}>
+                    <div className={`w-${progressClass[props.percent ?? '0'] } h-full text-center text-xs text-white ${props.color} rounded-full`}>
+                        {props.label}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+export default Progress;

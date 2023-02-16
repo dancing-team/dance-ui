@@ -4,7 +4,7 @@ import Progress from '../Progress'
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const Demo = () => (
   <div>
-    <Progress type="default" loading={true}>
+    {/* <Progress type="default" loading={true}>
       Default
     </Progress>
     <Progress type="primary" loading={true}>
@@ -15,7 +15,7 @@ const Demo = () => (
     </Progress>
     <Progress type="unstyle" loading={true}>
       Unstyle
-    </Progress>
+    </Progress> */}
   </div>
 )
 export default Demo
