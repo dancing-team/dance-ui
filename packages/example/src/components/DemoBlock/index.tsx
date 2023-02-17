@@ -1,16 +1,39 @@
-import React from 'react'
-import clsx from 'clsx'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
+import CodeBlock from '@theme/CodeBlock'
 
 type DemoBlockProps = {
+  title?: string
   children: JSX.Element
+  src?: string
+  codeExpand?: boolean
 }
-const DemoBlock = ({ children }: DemoBlockProps): JSX.Element => {
+
+const DemoBlock = ({ children, title, src, codeExpand = true }: DemoBlockProps): JSX.Element => {
+  const [showCode, setShowCode] = useState(codeExpand)
+
+  const renderCode = () => {
+    if (!src || !showCode) return null
+    return (
+      <CodeBlock language={'tsx'} showLineNumbers>
+        {src}
+      </CodeBlock>
+    )
+  }
+
   return (
-    <section className={styles.container}>
-      <div>{}</div>
-      <div className={styles.demo}>{children}</div>
-    </section>
+    <div className={styles.container}>
+      {children ? <div className={styles.demo}>{children}</div> : null}
+      <div className={styles.bar}>
+        {title && <div className={styles.title}>{title}</div>}
+        {src ? (
+          <div className={styles.toolbar} onClick={() => setShowCode(!showCode)}>
+            {showCode ? '收起源代码' : '展开源代码'}
+          </div>
+        ) : null}
+      </div>
+      {renderCode()}
+    </div>
   )
 }
 export default DemoBlock

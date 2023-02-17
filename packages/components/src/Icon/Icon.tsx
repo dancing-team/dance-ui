@@ -37,9 +37,14 @@ const Icon = ({ show, href, className, iconUrl, onClick, ...attr }: IconProps): 
   )
   useMount(() => {
     import('./script/iconfont.js' as any)
-    console.log('mounted')
   })
-  return <>{show && <IconFont onClick={_onClick} className={classNames('cursor-pointer', className)} {...attr} />}</>
+  return (
+    <>
+      {show && (
+        <IconFont onClick={_onClick} className={classNames({ 'cursor-pointer': href || onClick }, className)} {...attr} />
+      )}
+    </>
+  )
 }
 Icon.defaultProps = {
   show: true,

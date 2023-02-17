@@ -1,14 +1,27 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: 'center';
-  align-items: 'center';
-  background-color: gray;
-}
+  justify-content: center;  
+  background-color: #f6f8fa; 
+  border-radius: var(--ifm-code-border-radius);
+} 
 .demo {
-  padding: 1rem auto;
+  padding: var(--ifm-pre-padding);
   display: flex;
-  justify-content: center;
+  gap: 10px;
+}
+.bar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  background-color: antiquewhite;
+  padding: 0.75rem var(--ifm-pre-padding);
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+.title { 
+  font-size: var(--ifm-code-font-size);
+  font-weight: 500;
+}
+.toolbar {
+  cursor: pointer;
+  user-select: none;
 }

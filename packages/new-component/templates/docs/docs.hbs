@@ -1,4 +1,4 @@
-import DemoBlock from '@site/src/components/DemoBlock'
+import ComponentSource from '!!raw-loader!../../../components/src/{{pascalCase name}}/{{pascalCase name}}'
 import { {{pascalCase name}} } from '@dance-ui/ui'
 
 ## {{pascalCase name}} {{CN}}
@@ -9,8 +9,11 @@ import { {{pascalCase name}} } from '@dance-ui/ui'
 
 #### 基本使用
 
-<DemoBlock>
-  <{{pascalCase name}} />
+import DemoSrc from '!!raw-loader!../../../components/src/{{pascalCase name}}/demo'
+import Demo from '../../../components/src/{{pascalCase name}}/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
 </DemoBlock>
 
 ### API
@@ -19,3 +22,7 @@ import { {{pascalCase name}} } from '@dance-ui/ui'
 | ---- | ---- | ---- | ------ |
 
 ### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>
