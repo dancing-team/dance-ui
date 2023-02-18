@@ -18,6 +18,14 @@ jobs:
         with:
           node-version: 16.x
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+
+      - name: Install Dependencies
+        run: pnpm install
+
       - name: Run tests with coverage report
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
