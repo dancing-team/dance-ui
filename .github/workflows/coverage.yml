@@ -30,5 +30,4 @@ jobs:
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           working-directory: ./packages/components
-          test-script: pnpm test
           package-manager: pnpm
