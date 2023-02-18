@@ -23,3 +23,5 @@ export { default as Loading } from './Loading'
 
 export { default as FloatButtonGroup } from './FloatButtonGroup'
 export type { configItemType } from './FloatButtonGroup'
+
+export { default as Carousel } from './Carousel'

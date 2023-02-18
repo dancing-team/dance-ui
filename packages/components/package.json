@@ -17,7 +17,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "jest --coverage --coverageReporters=text-summary",
+    "test": "jest --coverage",
     "build": "tsc && vite build",
     "build-watch": "tsc && vite build --watch",
     "preview": "vite preview",
