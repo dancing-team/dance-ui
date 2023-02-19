@@ -13,9 +13,9 @@ export default () => (
     </div>
     <div>
       <h4>
-        interval={2000} debounceTime={500} defaultActiveIndex={2}
+        interval={2000} throttleTime={500} defaultActiveIndex={2}
       </h4>
-      <Carousel width={360} height={250} interval={2000} debounceTime={500} defaultActiveIndex={2}>
+      <Carousel width={360} height={250} interval={2000} throttleTime={1000} defaultActiveIndex={2}>
         <img src="https://fakeimg.pl/360x250/ff0000/?text=1" width={360} height={250} />
         <img src="https://fakeimg.pl/360x250/0000ff/?text=2" width={360} height={250} />
         <img src="https://fakeimg.pl/360x250/00ff00/?text=3" width={360} height={250} />
@@ -24,8 +24,8 @@ export default () => (
       </Carousel>
     </div>
     <div>
-      <h4>autoPlay = false</h4>
-      <Carousel width={360} height={250} autoplay={false}>
+      <h4>autoPlay = false throttleTime={1000}</h4>
+      <Carousel width={360} height={250} throttleTime={1000} autoplay={false}>
         <img src="https://fakeimg.pl/360x250/ff0000/?text=1" width={360} height={250} />
         <img src="https://fakeimg.pl/360x250/0000ff/?text=2" width={360} height={250} />
         <img src="https://fakeimg.pl/360x250/00ff00/?text=3" width={360} height={250} />

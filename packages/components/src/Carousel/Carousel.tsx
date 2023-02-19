@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import classNames from 'classnames'
+import _ from 'lodash-es'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Icon, { IconType } from '../Icon'
-import { debounce } from 'lodash-es'
-import classNames from 'classnames'
 
 export type CarouselProps = {
   children: React.ReactNode
@@ -20,8 +20,8 @@ export type CarouselProps = {
   renderLeftArrow?: ({ preEvent }: { preEvent: () => void }) => React.ReactNode
   // 渲染下一个指示器
   renderRightArrow?: ({ nextEvent }: { nextEvent: () => void }) => React.ReactNode
-  // 按钮debounce时间
-  debounceTime?: number
+  // 按钮throttle时间
+  throttleTime?: number
   // 渲染圆点指示器
   dotClass?: string
   renderDot?: ({ goTo }: { goTo: (idx: number) => void }) => React.ReactNode
@@ -37,6 +37,21 @@ const CarouselWrapper = styled.div`
   transition: ${({ enableTransitionAnim, transitionTime }: CarouselStyledProps) =>
     enableTransitionAnim ? `all ${transitionTime ?? 0.5}s` : 'none'};
 `
+// TODO: new package utils and push
+function useThrottle(fn: any, delay: number) {
+  const options = { leading: true, trailing: false } // add custom lodash options
+  const fnRef = useRef(fn)
+  // use mutable ref to make useCallback/throttle not depend on `fn` dep
+  useEffect(() => {
+    fnRef.current = fn
+  })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useCallback(
+    _.throttle((...args) => fnRef.current(...args), delay, options),
+    [delay],
+  )
+}
+
 // TODO：mvp版本 优化offset、width
 const Carousel = (props: CarouselProps): JSX.Element => {
   const {
@@ -48,7 +63,7 @@ const Carousel = (props: CarouselProps): JSX.Element => {
     interval,
     renderLeftArrow,
     renderRightArrow,
-    debounceTime,
+    throttleTime,
     dotClass,
     renderDot,
     autoplay,
@@ -60,12 +75,10 @@ const Carousel = (props: CarouselProps): JSX.Element => {
   const offset = useMemo(() => -width * index, [index, width]) // 计算偏移量
   const timer = useRef<any>(null)
   const [isMoving, setIsMoving] = useState(false)
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = (idx: number) => {
     // 当在动画进行时，不允许切换
     if (!realLength || isMoving) return
-    console.log(idx)
     // 切换前先把动画参数打开
     setEnableTransitionAnim(true)
     // 修改状态为进行时
@@ -124,7 +137,9 @@ const Carousel = (props: CarouselProps): JSX.Element => {
     // 修改状态为完成
     setIsMoving(false)
   }
-  const _debounce = (fn: (...args: any) => any) => debounce(fn, debounceTime ?? 300)
+  const throttledPreItem = useThrottle(preItem, throttleTime ?? 300)
+  const throttledNextItem = useThrottle(nextItem, throttleTime ?? 300)
+  const throttledHandleChange = useThrottle(handleChange, throttleTime ?? 300)
 
   // 渲染轮播图列表
   const renderList = () => {
@@ -142,29 +157,29 @@ const Carousel = (props: CarouselProps): JSX.Element => {
   }
 
   const _renderLeftArrow = () => {
-    if (renderLeftArrow && typeof renderLeftArrow === 'function') return renderLeftArrow({ preEvent: _debounce(preItem) })
+    if (renderLeftArrow && typeof renderLeftArrow === 'function') return renderLeftArrow({ preEvent: throttledPreItem })
     return (
       <div
         className="absolute inset-y-0 left-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
-        onClick={_debounce(preItem)}>
+        onClick={throttledPreItem}>
         <Icon type={IconType.ARROW} className="h-5 w-5 rotate-180 fill-white" />
       </div>
     )
   }
 
   const _renderRightArrow = () => {
-    if (renderRightArrow && typeof renderRightArrow === 'function') return renderRightArrow({ nextEvent: _debounce(nextItem) })
+    if (renderRightArrow && typeof renderRightArrow === 'function') return renderRightArrow({ nextEvent: throttledNextItem })
     return (
       <div
         className="absolute inset-y-0 right-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
-        onClick={_debounce(nextItem)}>
+        onClick={throttledNextItem}>
         <Icon type={IconType.ARROW} className="h-5 w-5 fill-white" />
       </div>
     )
   }
 
   const _renderDot = () => {
-    if (renderDot && typeof renderDot === 'function') return renderDot({ goTo: _debounce(handleChange) })
+    if (renderDot && typeof renderDot === 'function') return renderDot({ goTo: throttledHandleChange })
     if (!length) return null
     const dots = []
     for (let i = 0; i < length; ++i) {
@@ -172,9 +187,7 @@ const Carousel = (props: CarouselProps): JSX.Element => {
         <div
           key={i}
           className={classNames('aspect-square w-2 cursor-pointer rounded-full bg-white/90', dotClass)}
-          onClick={_debounce(() => {
-            handleChange(i + 1)
-          })}></div>,
+          onClick={() => throttledHandleChange(i + 1)}></div>,
       )
     }
     return (
@@ -205,7 +218,7 @@ Carousel.defaultProps = {
   defaultActiveIndex: 1,
   interval: 1000,
   transitionTime: 0.5,
-  debounceTime: 300,
+  throttleTime: 300,
   autoplay: true,
 }
 

@@ -25,7 +25,7 @@ import Demo from '../../../components/src/Carousel/demo'
 | defaultActiveIndex | 可选   | 默认轮播第几张图                                   | `number`                                                         | 1      |
 | interval           | 可选   | 轮播图自动切换间隔，单位为 ms                      | `number`                                                         | 1000   |
 | transitionTime     | 可选   | 轮播图切换所需时间，单位为 s                       | `number`                                                         | 0.5    |
-| debounceTime       | 可选   | 轮播图事件防抖时间，单位为 ms                      | `number`                                                         | 300    |
+| throttleTime       | 可选   | 轮播图事件节流时间，单位为 ms                      | `number`                                                         | 300    |
 | renderLeftArrow    | 可选   | 渲染左侧指示器，preEvent 为切换上一张图的事件      | `({ preEvent }: { preEvent: () => void }) => React.ReactNode`    | -      |
 | renderRightArrow   | 可选   | 渲染右侧指示器，nextEvent 为切换下一张图的事件     | `({ nextEvent }: { nextEvent: () => void }) => React.ReactNode`  | -      |
 | dotClass           | 可选   | 下方圆点指示器的类名                               | `string`                                                         | -      |
