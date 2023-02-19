@@ -120,6 +120,8 @@ const Carousel = (props: CarouselProps): JSX.Element => {
     // 修改状态为完成
     setIsMoving(false)
   }
+  const _debounce = (fn: (...args: any) => any) => debounce(fn, debounceTime ?? 300)
+
   // 渲染轮播图列表
   const renderList = () => {
     if (!length) return null
@@ -134,7 +136,29 @@ const Carousel = (props: CarouselProps): JSX.Element => {
       </div>
     ))
   }
-  const _debounce = (fn: (...args: any) => any) => debounce(fn, debounceTime ?? 300)
+
+  const _renderLeftArrow = () => {
+    if (renderLeftArrow && typeof renderLeftArrow === 'function') return renderLeftArrow({ preEvent: _debounce(preItem) })
+    return (
+      <div
+        className="absolute inset-y-0 left-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
+        onClick={_debounce(preItem)}>
+        <Icon type={IconType.ARROW} className="h-5 w-5 rotate-180 fill-white" />
+      </div>
+    )
+  }
+
+  const _renderRightArrow = () => {
+    if (renderRightArrow && typeof renderRightArrow === 'function') return renderRightArrow({ nextEvent: _debounce(nextItem) })
+    return (
+      <div
+        className="absolute inset-y-0 right-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
+        onClick={_debounce(nextItem)}>
+        <Icon type={IconType.ARROW} className="h-5 w-5 fill-white" />
+      </div>
+    )
+  }
+
   const _renderDot = () => {
     if (renderDot && typeof renderDot === 'function') return renderDot({ goTo: _debounce(handleChange) })
     if (!length) return null
@@ -167,33 +191,8 @@ const Carousel = (props: CarouselProps): JSX.Element => {
         onTransitionEnd={handleTransitionEnd}>
         {renderList()}
       </CarouselWrapper>
-      {renderLeftArrow ? (
-        renderLeftArrow({ preEvent: _debounce(preItem) })
-      ) : (
-        <div
-          className="absolute inset-y-0 left-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
-          onClick={_debounce(preItem)}>
-          <Icon type={IconType.ARROW} className="h-5 w-5 rotate-180 fill-white" />
-        </div>
-      )}
-      {renderRightArrow ? (
-        renderRightArrow({ nextEvent: _debounce(nextItem) })
-      ) : (
-        <div
-          className="absolute inset-y-0 right-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
-          onClick={_debounce(nextItem)}>
-          <Icon type={IconType.ARROW} className="h-5 w-5 fill-white" />
-        </div>
-      )}
-      {renderRightArrow ? (
-        renderRightArrow({ nextEvent: _debounce(nextItem) })
-      ) : (
-        <div
-          className="absolute inset-y-0 right-0 flex cursor-pointer items-center justify-center bg-black/10 p-2"
-          onClick={_debounce(nextItem)}>
-          <Icon type={IconType.ARROW} className="h-5 w-5 fill-white" />
-        </div>
-      )}
+      {_renderLeftArrow()}
+      {_renderRightArrow()}
       {_renderDot()}
     </div>
   )
