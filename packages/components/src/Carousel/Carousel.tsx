@@ -100,7 +100,6 @@ const Carousel = (props: CarouselProps): JSX.Element => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const nextItem = () => {
     const tar = index === realLength - 1 ? 0 : index + 1
-    console.log('nextItem', { tar, index })
     handleChange(tar)
   }
   const preItem = () => {
