@@ -14,6 +14,8 @@ export type CarouselProps = {
   interval?: number
   // CSS transition 时间 单位为s
   transitionTime?: number
+  // 自动播放
+  autoplay?: boolean
   // 渲染上一个指示器
   renderLeftArrow?: ({ preEvent }: { preEvent: () => void }) => React.ReactNode
   // 渲染下一个指示器
@@ -49,6 +51,7 @@ const Carousel = (props: CarouselProps): JSX.Element => {
     debounceTime,
     dotClass,
     renderDot,
+    autoplay,
   } = props
   const [index, setIndex] = useState(defaultActiveIndex ?? 1)
   const [enableTransitionAnim, setEnableTransitionAnim] = useState(true)
@@ -99,12 +102,13 @@ const Carousel = (props: CarouselProps): JSX.Element => {
 
   // 定时器自动播放
   useEffect(() => {
+    if (!autoplay) return
     timer.current && clearTimeout(timer.current)
     timer.current = setTimer()
     return () => {
       timer.current && clearTimeout(timer.current)
     }
-  }, [interval, setTimer])
+  }, [autoplay, interval, setTimer])
 
   useEffect(() => {
     if (isMoving) return
@@ -202,6 +206,7 @@ Carousel.defaultProps = {
   interval: 1000,
   transitionTime: 0.5,
   debounceTime: 300,
+  autoplay: true,
 }
 
 export default Carousel
