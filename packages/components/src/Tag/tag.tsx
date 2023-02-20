@@ -28,7 +28,7 @@ export type TagProps = {
 }
 
 const defaultStyle =
-  'mb-8 mr-8 inline-block rounded border border-solid border-slate-200 py-0 px-2 text-xs whitespace-nowrap bg-[#fafafa] h-6 leading-6'
+  'inline-block rounded border border-solid border-slate-200 py-0 px-2 text-xs whitespace-nowrap bg-[#fafafa] h-6 leading-6'
 const colorStyle = 'border-transparent text-white'
 
 const Tag: React.FC<TagProps> = function TagInner({ children, onClose, closable, color }: React.PropsWithChildren<TagProps>) {

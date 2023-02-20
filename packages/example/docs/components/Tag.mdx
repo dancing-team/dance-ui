@@ -5,32 +5,47 @@ import { Tag } from '@dance-ui/ui'
 ### 正常的使用 Tag
 
 <DemoBlock>
-<Tag>标签1</Tag>  <br/>
+  <Tag>标签1</Tag>
+</DemoBlock>
+
+```tsx
+<Tag>标签1</Tag>
+```
 
 ## 给 Tag 增加颜色
 
+> 这里可以自定义颜色，只需要在 `color`处设置值。
+
+<DemoBlock>
+  <Tag color="red">标签2</Tag>
+  <Tag color="blue">标签3</Tag>
+  <Tag color="green">标签4</Tag>
+  <Tag color="pink">标签5</Tag>
+</DemoBlock>
+
+```tsx
 <Tag color="red">标签2</Tag>
 <Tag color="blue">标签3</Tag>
 <Tag color="green">标签4</Tag>
-<Tag color="pink">标签5</Tag> 
-
-> 这里可以自定义颜色，只需要在 `color`处设置值。
-
-```ts
-import { Tag } from '@dance-ui/ui'
-
-<Tag color="red">标签2</Tag> 
+<Tag color="pink">标签5</Tag>
 ```
 
 ## 设置可关闭的 Tag
 
-<Tag color="pink" closable={true}>可关闭标签</Tag>
-<Tag color="green" closable={true}>可关闭标签</Tag>
-
-```ts
-import { Tag } from '@dance-ui/ui'
-
-<Tag color="pink" closable={true}>可关闭标签</Tag>
-```
-
+<DemoBlock>
+  <Tag color="pink" closable={true}>
+    可关闭标签
+  </Tag>
+  <Tag color="green" closable={true}>
+    可关闭标签
+  </Tag>
 </DemoBlock>
+
+```tsx
+<Tag color="pink" closable={true}>
+	可关闭标签
+</Tag>
+<Tag color="green" closable={true}>
+	可关闭标签
+</Tag>
+```
