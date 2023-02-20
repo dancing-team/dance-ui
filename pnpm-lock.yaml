@@ -65,20 +65,24 @@ importers:
       '@testing-library/jest-dom': ^4.2.4
       '@testing-library/react': 12.0.0
       '@types/jest': ^29.4.0
+      '@types/lodash-es': ^4.17.6
       '@types/styled-components': ^5.1.26
       '@types/testing-library__jest-dom': ^5.14.5
       autoprefixer: ^10.4.13
       classnames: ^2.3.2
       jest: ^29.4.3
       jest-environment-jsdom: ^29.4.3
+      lodash-es: ^4.17.21
       postcss: ^8.4.21
       react-use: ^17.4.0
       styled-components: ^5.3.6
       tailwindcss: ^3.2.4
+      ts-babel: ^6.1.7
       ts-node: ^10.9.1
       vite-plugin-libcss: ^1.0.5
     dependencies:
       classnames: 2.3.2
+      lodash-es: 4.17.21
       react-use: 17.4.0
       styled-components: 5.3.6
     devDependencies:
@@ -88,6 +92,7 @@ importers:
       '@testing-library/jest-dom': 4.2.4
       '@testing-library/react': 12.0.0
       '@types/jest': 29.4.0
+      '@types/lodash-es': 4.17.6
       '@types/styled-components': 5.1.26
       '@types/testing-library__jest-dom': 5.14.5
       autoprefixer: 10.4.13_postcss@8.4.21
@@ -95,6 +100,7 @@ importers:
       jest-environment-jsdom: 29.4.3
       postcss: 8.4.21
       tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
+      ts-babel: 6.1.7
       ts-node: 10.9.1
       vite-plugin-libcss: 1.0.5
 
@@ -5020,6 +5026,16 @@ packages:
       '@types/node': 18.11.18
     dev: true
 
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+    dev: true
+
   /@types/mdast/3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
     dependencies:
@@ -6055,6 +6071,10 @@ packages:
       buffer: 6.0.3
       inherits: 2.0.4
       readable-stream: 3.6.0
+    dev: true
+
+  /bluebird/3.7.2:
+    resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
     dev: true
 
   /body-parser/1.20.1:
@@ -10403,6 +10423,10 @@ packages:
     dependencies:
       p-locate: 5.0.0
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash.curry/4.1.1:
     resolution: {integrity: sha512-/u14pXGviLaweY5JI0IUzgzF2J6Ne8INyzAZjImcryjgkZ+ebruBxy2/JaOOkTqScddcYtakjhSaeemV8lR0tA==}
     dev: false
@@ -13691,6 +13715,21 @@ packages:
     resolution: {integrity: sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==}
     dev: false
 
+  /ts-babel/6.1.7:
+    resolution: {integrity: sha512-obqCjCK4HTjyXxjnqF0sgGcYHtH632pghjjaWwC+efiHyW7PutqyU/7iWV9IKyLXotwSZiMNSbYAmucAbNjQ1Q==}
+    engines: {node: '>=8.10.0'}
+    hasBin: true
+    peerDependencies:
+      typescript: ^3.5.2
+    dependencies:
+      '@babel/core': 7.20.12
+      bluebird: 3.7.2
+      fs-extra: 8.1.0
+      v8-compile-cache: 2.3.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /ts-easing/0.2.0:
     resolution: {integrity: sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==}
     dev: false
@@ -14142,6 +14181,10 @@ packages:
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+    dev: true
+
+  /v8-compile-cache/2.3.0:
+    resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
 
   /v8-to-istanbul/9.1.0:

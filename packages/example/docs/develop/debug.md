@@ -1,7 +1,6 @@
 ---
 sidebar_position: 2
 ---
-
 # bug 回忆录
 
 ## Prettier 格式化未生效
@@ -75,3 +74,7 @@ useMount(() => {
   console.log('mounted')
 })
 ```
+
+## Jest 引入 loadsh-es 时出错
+
+![1676813096781](assets/debug/1676813096781.png)
