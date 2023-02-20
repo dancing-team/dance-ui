@@ -1,0 +1,28 @@
+import ComponentSource from '!!raw-loader!../../../components/src/{{pascalCase name}}/{{pascalCase name}}'
+import { {{pascalCase name}} } from '@dance-ui/ui'
+
+# {{pascalCase name}} {{CN}}
+
+{{description}}
+
+### 代码演示
+
+#### 基本使用
+
+import DemoSrc from '!!raw-loader!../../../components/src/{{pascalCase name}}/demo'
+import Demo from '../../../components/src/{{pascalCase name}}/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### API
+
+| 属性 | 说明 | 类型 | 默认值 |
+| ---- | ---- | ---- | ------ |
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

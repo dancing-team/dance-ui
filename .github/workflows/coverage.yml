@@ -1,0 +1,30 @@
+name: Jest Coverage Comment
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6
+
+      - name: Run tests with coverage report
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          working-directory: ./packages/components
+          package-manager: pnpm

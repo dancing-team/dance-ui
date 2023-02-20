@@ -1,11 +1,64 @@
-import { ReactElement, useState } from 'react'
+import { ReactElement } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button } from '@dance-ui/ui'
+import { Button, Icon, Space, IconType, Loading, FloatButtonGroup, configItemType } from '@dance-ui/ui'
 import './App.css'
 
 const App = (): ReactElement => {
-  const [count, setCount] = useState(0)
-
+  const configs: configItemType[] = [
+    {
+      type: "link",
+      action: {
+        href: "www.baidu.com",
+        target: '_blank'
+      }
+    },
+    {
+      description: "hhh",
+      type: "button",
+      action: {
+        onClick: () => {
+          console.log("点击回调");
+        }
+      }
+    },
+    {
+      description: "电梯佳1234213",
+      type: "backTop",
+      action: {
+        visibleheight: 300,
+      }
+    },
+    {
+      description: <>
+        <div>
+          <Icon type={IconType.LOADING} style={{ fontSize: 16, color: 'black' }} href={'https://github.com/dancing-team/dance-ui'} />
+          <div>制定</div>
+        </div>
+      </>,
+      type: "link",
+      action: {
+        href: "www.baidu.com",
+        target: '_blank'
+      }
+    }
+  ]
+  const renderAllIcon = () => {
+    const icons = []
+    for (const key in IconType) {
+      const value = (IconType as any)[key]
+      icons.push(value)
+    }
+    return (
+      <>
+        {icons.map((icon) => (
+          <div key={icon}>
+            {icon}:
+            <Icon type={icon} style={{ fontSize: 46, color: 'black' }} href={'https://github.com/dancing-team/dance-ui'} />
+          </div>
+        ))}
+      </>
+    )
+  }
   return (
     <div className="App">
       <div>
@@ -16,17 +69,30 @@ const App = (): ReactElement => {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Demo</h1>
       <div className="card">
-        <button
-          onClick={() => {
-            setCount((count) => count + 1)
-          }}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <Loading iconType={IconType.CLOSE} />
+        <div>Icons {renderAllIcon()}</div>
+        <Space justify="center" direction="vertical" align="center">
+          <Space gap="large" style={{ backgroundColor: 'red' }}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+          </Space>
+          <Space gap="middle" style={{ backgroundColor: 'blue' }}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+          </Space>
+          <Space direction="vertical">
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+          </Space>
+        </Space>
         <Button
           size="large"
           onClick={() => {
@@ -41,6 +107,10 @@ const App = (): ReactElement => {
           }}>
           large
         </Button>
+      </div>
+    <div className='innerBox'>
+      <div className="innerChildren" style={{height: "2000px"}}>123</div>
+          <FloatButtonGroup configs={configs} left='20px' top='100px' platformStyle="TaoBao"></FloatButtonGroup>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </div>

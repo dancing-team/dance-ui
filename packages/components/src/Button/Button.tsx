@@ -1,5 +1,6 @@
 import classNames from 'classnames'
-import React, { LegacyRef } from 'react'
+import { CSSProperties, forwardRef, LegacyRef, ReactNode, useMemo } from 'react'
+import Loading, { LoadingProps } from '../Loading'
 
 export type ButtonProps = {
   /** 按钮类型 */
@@ -16,54 +17,86 @@ export type ButtonProps = {
   disabled?: boolean
   /** 是否加载中 */
   loading?: boolean
+
   /** 组件额外的 CSS className */
   className?: string
   /** 组件额外的 CSS style */
-  style?: React.CSSProperties
-}
-const typeClass = {
-  default: 'bg-white border-gray-500 hover:border-blue-500 hover:text-blue-500',
-  primary: 'bg-blue-500 border-blue-500 text-white hover:bg-blue-400 hover:border-blue-400',
-  link: 'border-transparent hover:text-blue-500',
-}
-const ghostClass = {
-  default: 'border-white text-white hover:border-blue-500 hover:text-blue-500',
-  primary: 'bg-transparent text-blue-500 border-blue-500 hover:text-blue-400 hover:border-blue-400',
-  link: 'border-transparent text-white hover:text-blue-500',
+  style?: CSSProperties
+
+  /** 子组件 */
+  children?: ReactNode
+
+  /** Loading图标 CSS className */
+  iconClassName?: string
+  /** Loading图标参数 */
+  loadingIconProps?: LoadingProps
 }
 
-const dangerClass = {
-  default: 'text-red-500 border-red-500 hover:border-red-400 hover:text-red-400',
-  primary: 'bg-red-500 text-[#fff] border-red-500 hover:bg-red-400 hover:text-[#fff] hover:border-red-400',
-  link: 'text-red-500 hover:text-red-400',
+const ButtonClass = {
+  sizeClass: {
+    large: 'py-2 px-5',
+    middle: 'py-1 px-4',
+    small: 'px-1',
+  },
+  typeClass: {
+    default: 'border-black bg-white text-black enabled:hover:border-dd-primary enabled:hover:text-dd-primary',
+    primary: 'border-dd-primary bg-dd-primary text-white enabled:hover:opacity-80',
+    link: 'border-transparent enabled:hover:text-dd-primary',
+  },
+  ghostClass: {
+    default: 'border-white text-white enabled:hover:border-dd-primary enabled:hover:text-dd-primary',
+    primary: 'border-dd-primary bg-transparent text-dd-primary enabled:hover:opacity-80',
+    link: 'border-transparent text-white enabled:hover:text-dd-primary',
+  },
+  dangerClass: {
+    default: 'border-dd-danger text-dd-danger enabled:hover:opacity-80',
+    primary: 'border-dd-danger bg-dd-danger text-white enabled:hover:opacity-80',
+    link: 'border-transparent text-dd-danger enabled:hover:opacity-80',
+  },
 }
-const sizeClass = {
-  large: 'py-2 px-5',
-  middle: 'py-1 px-4',
-  small: 'px-1',
-}
-const Button = React.forwardRef(function ButtonInner(
-  { type, size, className, onClick, disabled, danger, ghost, loading, style, children }: React.PropsWithChildren<ButtonProps>,
+
+const Button = forwardRef(function ButtonInner(
+  {
+    type,
+    size,
+    className,
+    onClick,
+    disabled,
+    danger,
+    ghost,
+    loading,
+    style,
+    children,
+    iconClassName,
+    loadingIconProps,
+  }: ButtonProps,
   ref: LegacyRef<HTMLButtonElement>,
 ) {
+  const { sizeClass, typeClass, dangerClass, ghostClass } = ButtonClass
+  const _disabled = disabled || loading
+  const _chooseClass = useMemo(() => {
+    if ((danger && ghost) || danger) return dangerClass
+    else if (ghost) return ghostClass
+    else return typeClass
+  }, [danger, dangerClass, ghost, ghostClass, typeClass])
   return (
     <button
+      ref={ref}
       className={
         type === 'unstyle'
           ? className
           : classNames(
               'box-border border transition focus:outline-none',
               sizeClass[size ?? 'middle'],
-              danger ? dangerClass[type ?? 'default'] : null,
-              ghost ? ghostClass[type ?? 'default'] : typeClass[type ?? 'default'],
+              _chooseClass[type ?? 'default'],
+              _disabled ? 'disabled:cursor-not-allowed disabled:opacity-60' : 'cursor-pointer',
               className,
             )
       }
       style={style}
-      onClick={loading ? undefined : onClick}
-      ref={ref}
-      disabled={disabled}>
-      {/* <Loading show={loading} className="mr-2" /> */}
+      onClick={_disabled ? undefined : onClick}
+      disabled={_disabled}>
+      <Loading show={loading} className={classNames('mr-2', iconClassName)} {...loadingIconProps} />
       {children}
     </button>
   )
@@ -72,5 +105,6 @@ Button.defaultProps = {
   type: 'default',
   size: 'middle',
   loading: false,
+  disabled: false,
 }
 export default Button

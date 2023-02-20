@@ -1,4 +1,7 @@
 vite.config.ts
 vite-env.d.ts
-dist
-lib
+packages/example/*
+packages/demo/*
+packages/components/dist/*
+packages/components/src/Icon/script/iconfont.js
+packages/components/src/**/demo

@@ -1,0 +1,37 @@
+---
+sidebar_position: 1
+---
+
+import { Progress } from '@dance-ui/ui'
+
+# Progress
+
+#### label用于写文字，color指定颜色，textColor用于指定文字颜色（但是现在不知道为什么不变）
+
+```js
+  <Progress color="bg-green-500" label="40%" percent="1">
+    Progress
+  </Progress>
+```
+
+<DemoBlock>
+  <Progress color="bg-green-500" label="40%" percent="1">
+    Progress
+  </Progress>
+</DemoBlock>
+
+
+#### percent 可以指代进度，0为无进度，1为 1/4，2为 1/2 ，3 为 3/4 ，4 为满
+
+```js
+  <Progress color="bg-green-500" percent="2" textColor="green">
+    Progress
+  </Progress>
+```
+
+<DemoBlock>
+  <Progress color="bg-green-500" percent="3" label="40%">
+    Progress
+  </Progress>
+</DemoBlock>
+
