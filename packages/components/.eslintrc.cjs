@@ -18,5 +18,6 @@ module.exports = {
     'react/prop-types': 'off',
     'react/display-name': 'off',
     '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
   },
 }

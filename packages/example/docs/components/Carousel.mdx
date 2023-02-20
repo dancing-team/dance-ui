@@ -1,0 +1,43 @@
+---
+sidebar_position: 6
+---
+
+import ComponentSource from '!!raw-loader!../../../components/src/Carousel/Carousel'
+import { Carousel } from '@dance-ui/ui'
+
+# Carousel 轮播图
+
+轮播图组件，常用于一组图片轮播。
+
+### 代码演示
+
+#### 基本使用
+
+import DemoSrc from '!!raw-loader!../../../components/src/Carousel/demo'
+import Demo from '../../../components/src/Carousel/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### API
+
+| 属性               | 默认值 | 说明                                               | 类型                                                             | 默认值 |
+| ------------------ | ------ | -------------------------------------------------- | ---------------------------------------------------------------- | ------ |
+| width              | 必选   | 轮播图宽度                                         | `number`                                                         | -      |
+| height             | 必选   | 轮播图高度                                         | `number`                                                         | -      |
+| defaultActiveIndex | 可选   | 默认轮播第几张图                                   | `number`                                                         | 1      |
+| interval           | 可选   | 轮播图自动切换间隔，单位为 ms                      | `number`                                                         | 1000   |
+| transitionTime     | 可选   | 轮播图切换所需时间，单位为 s                       | `number`                                                         | 0.5    |
+| throttleTime       | 可选   | 轮播图事件节流时间，单位为 ms                      | `number`                                                         | 300    |
+| renderLeftArrow    | 可选   | 渲染左侧指示器，preEvent 为切换上一张图的事件      | `({ preEvent }: { preEvent: () => void }) => React.ReactNode`    | -      |
+| renderRightArrow   | 可选   | 渲染右侧指示器，nextEvent 为切换下一张图的事件     | `({ nextEvent }: { nextEvent: () => void }) => React.ReactNode`  | -      |
+| dotClass           | 可选   | 下方圆点指示器的类名                               | `string`                                                         | -      |
+| renderDot          | 可选   | 渲染下方圆点指示器，goTo 为切换到第 idx 张图的函数 | `({ goTo }: { goTo: (idx: number) => void }) => React.ReactNode` | -      |
+| autoplay           | 可选   | 是否自动播放                                       | `boolean`                                                        | `true` |
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

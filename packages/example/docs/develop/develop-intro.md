@@ -459,6 +459,66 @@ cd scripts
 
 ![1674210423890](assets/1674210423890.png)
 
+### 使用 React-testing-library 编写组件测试
+
+- [react-testing-library 一般配置流程 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/376428527)
+
+第一步：安装 Jest、React testing library、Jest-dom
+
+```bash
+cd packages/components
+pnpm i -D @testing-library/react @testing-library/jest-dom jest @types/jest ts-node @types/testing-library__jest-dom
+pnpm i -D @babel/preset-react @babel/preset-typescript @babel/preset-env
+```
+
+第二步：配置 jest 及 babel
+通过全局的 Jest 命令行，在项目下生成 Jest 配置。
+先 **全局安装** Jest， 然后初始化配置文件
+
+```bash
+npm install -g jest
+jest --init
+```
+
+jest.config.ts 修改如下：
+
+```ts
+export default {
+  clearMocks: true,
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageProvider: 'v8',
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  testEnvironment: 'jsdom',
+}
+```
+
+新建 babel.config.cjs 文件 修改如下：
+
+```ts
+module.exports = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic',
+      },
+    ],
+    '@babel/preset-typescript',
+  ],
+}
+```
+
+然后 pnpm test 就可以愉快工作啦
+
 ## 组件开发
 
 ### Icon 图标

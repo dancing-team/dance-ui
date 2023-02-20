@@ -21,7 +21,8 @@
     "change": "npx changeset add",
     "change:ver": "changeset version",
     "change:pub": "changeset publish",
-    "new": "pnpm run -C packages/new-component new"
+    "new": "pnpm run -C packages/new-component new",
+    "test": "pnpm run -C packages/components test"
   },
   "dependencies": {
     "react": "^17.0.2",

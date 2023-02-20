@@ -3,4 +3,5 @@ export enum IconType {
   SEARCH = 'search',
   CLOSE = 'close',
   DELETE = 'delete',
+  ARROW = 'arrow',
 }

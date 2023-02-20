@@ -1,9 +1,47 @@
 import { ReactElement } from 'react'
 import reactLogo from './assets/react.svg'
-import { Button, Icon, Space, IconType, Loading } from '@dance-ui/ui'
+import { Button, Icon, Space, IconType, Loading, FloatButtonGroup, configItemType } from '@dance-ui/ui'
 import './App.css'
 
 const App = (): ReactElement => {
+  const configs: configItemType[] = [
+    {
+      type: "link",
+      action: {
+        href: "www.baidu.com",
+        target: '_blank'
+      }
+    },
+    {
+      description: "hhh",
+      type: "button",
+      action: {
+        onClick: () => {
+          console.log("点击回调");
+        }
+      }
+    },
+    {
+      description: "电梯佳1234213",
+      type: "backTop",
+      action: {
+        visibleheight: 300,
+      }
+    },
+    {
+      description: <>
+        <div>
+          <Icon type={IconType.LOADING} style={{ fontSize: 16, color: 'black' }} href={'https://github.com/dancing-team/dance-ui'} />
+          <div>制定</div>
+        </div>
+      </>,
+      type: "link",
+      action: {
+        href: "www.baidu.com",
+        target: '_blank'
+      }
+    }
+  ]
   const renderAllIcon = () => {
     const icons = []
     for (const key in IconType) {
@@ -69,6 +107,10 @@ const App = (): ReactElement => {
           }}>
           large
         </Button>
+      </div>
+    <div className='innerBox'>
+      <div className="innerChildren" style={{height: "2000px"}}>123</div>
+          <FloatButtonGroup configs={configs} left='20px' top='100px' platformStyle="TaoBao"></FloatButtonGroup>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </div>

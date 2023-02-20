@@ -14,8 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve",
+    "jsx": "preserve"
   },
-	"include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx"],
+  "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
