@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import * as React from 'react'
+import React from 'react'
 
 export type BadgeProps = {
   /** 自定义小圆点的颜色 */
@@ -29,7 +29,7 @@ const sizeStyle = {
   small: 'h-4 w-4 text-xs',
 }
 
-const Badge: React.FC<BadgeProps> = (props: BadgeProps) => {
+const Badge = (props: BadgeProps): JSX.Element => {
   const { color, count, offset, overflowCount, showZero, title, className, children, style } = props
 
   let { size } = props

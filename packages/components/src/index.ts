@@ -22,6 +22,8 @@ export { default as Table } from './Table'
 
 export { default as Tag } from './Tag'
 
+export { default as Badge } from './Badge'
+
 export { default as Statistic } from './Statistic'
 
 export { default as Progress } from './Progress'
