@@ -31,3 +31,5 @@ export { default as Progress } from './Progress'
 export { default as Alert } from './Alert'
 
 export { default as Tabs } from './Tabs'
+
+export { default as DatePicker } from './DatePicker'

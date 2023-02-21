@@ -1,0 +1,46 @@
+---
+sidebar_position: 5
+---
+
+import ComponentSource from '!!raw-loader!../../../components/src/DatePicker/DatePicker'
+import { DatePicker } from '@dance-ui/ui'
+
+# DatePicker 日期选择器
+
+日期选择器 实现日、月、年面板的日期选择
+
+日、月、年选择面板的实现交互：
+
+- 日面板：实现点击日期选择具体日期，点击头部面部左右箭头可前往上一年/下一年、上一月/下一月
+- 月面板：点击日面板头部月份进入，点击月份则选择具体月份并返回日面板，点击头部面部左右箭头前往上一年/下一年
+- 年面板：点击日面板头部月份进入，以十年为区间，点击年份则选择该年并返回日面板，点击头部面部左右箭头前往上个十年/下个十年
+- 根据输入框更改输入实时变换日期
+
+### 代码演示
+
+#### 基本使用
+
+import DemoSrc from '!!raw-loader!../../../components/src/DatePicker/demo'
+import Demo from '../../../components/src/DatePicker/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### API
+
+- 支持默认日期的设置 `defaultDate` 通过设置 defaultDate 为 dayjs 对象实现默认日期的设置
+- 支持日期的获取 `onDateChange` 通过日期变化的回调函数获取当前日期，返回 dayjs 对象
+
+| 属性名      | 描述                     | 类型                                         | 默认值    |
+| ----------- | ------------------------ | -------------------------------------------- | --------- |
+| onChange    | 日期变化时的回调函数     | `(date: Dayjs, dateString?: string) => void` | `--`      |
+| defaultDate | 默认日期                 | `Date`                                       | `nowDate` |
+| className   | 组件额外的 CSS className | `string`                                     | `--`      |
+| style       | 组件额外的 CSS style     | `CSSProperties`                              | `--`      |
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>
