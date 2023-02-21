@@ -1,18 +1,36 @@
 # dance-ui
 
-[![npm version](https://img.shields.io/npm/v/@dance-ui/ui/latest.svg)](https://www.npmjs.com/package/@dance-ui/ui)
-[![Actions Status](https://github.com/dancing-team/dance-ui/actions/workflows/release.yml/badge.svg)](https://github.com/dancing-team/dance-ui)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![npm version](https://img.shields.io/npm/v/@dance-ui/ui/latest.svg)](https://www.npmjs.com/package/@dance-ui/ui) [![Actions Status](https://github.com/dancing-team/dance-ui/actions/workflows/release.yml/badge.svg)](https://github.com/dancing-team/dance-ui) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![CHANGE_LOG](https://img.shields.io/badge/CHANGE-LOG-ff69b4.svg?style=flat-square)](https://github.com/dancing-team/dance-ui/blob/main/packages/components/CHANGELOG.md)
 
 🌸 A simple and elegant component library.
 
-# 🍨 Quick Start
+使用 pnpm+vite+ts+tailwind 开发的 React 组件库， 采用 monorepo 组织，文档站使用 [Docusaurus](https://docusaurus.io/docs) 构建
+
+文档站在线地址：https://dance.cosine.ren/
+
+Github 地址：https://github.com/dancing-team/dance-ui
+
+NPM 包：https://www.npmjs.com/package/@dance-ui/ui
+
+更新日志：[CHANGE_LOG](https://github.com/dancing-team/dance-ui/blob/main/packages/components/CHANGELOG.md)
+
+# 🍨 快速开始
 
 ```bash
 pnpm i @dance-ui/ui
 ```
 
-# 🕵 Develop
+引入组件：[组件全览](https://dance.cosine.ren/docs/category/%E7%BB%84%E4%BB%B6%E5%85%A8%E8%A7%88)
+
+```tsx
+import { Button } from '@dance-ui/ui'
+
+export default () => {
+  return <Button type="primary">Primary</Button>
+}
+```
+
+# 🕵 本地开发
 
 ```bash
 # install decencies
@@ -33,3 +51,10 @@ pnpm start
 - `change` 执行使用 changeset add 记录版本修改
 - `new` 新建组件的脚本
 - `lint` 对组件库进行 eslint 代码检查
+
+## 新组件开发
+
+- fork 本仓库
+- cd 根目录，`pnpm new` 来创建一个新组件，输入组件中文名称与英文名称
+- 创建完，进入 `packages/components/src` 目录找到自己创建的组件进行开发即可，对应文档位于 `packages\example\docs\components`
+- 组件开发完成后，`pnpm change` 可进行更新日志的记录，此步也可不做（合并pr后再做调整）

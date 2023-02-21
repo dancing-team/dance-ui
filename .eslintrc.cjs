@@ -20,5 +20,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/triple-slash-reference': 'off',
+    'react/prop-types': 'off',
   },
 }

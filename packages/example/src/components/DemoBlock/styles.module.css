@@ -1,14 +1,15 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;  
-  background-color: #f6f8fa; 
+  justify-content: center;
+  background-color: #f6f8fa;
   border-radius: var(--ifm-code-border-radius);
-} 
+}
 .demo {
   padding: var(--ifm-pre-padding);
   display: flex;
   gap: 10px;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
 .bar {
   display: flex;
@@ -17,7 +18,7 @@
   padding: 0.75rem var(--ifm-pre-padding);
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
 }
-.title { 
+.title {
   font-size: var(--ifm-code-font-size);
   font-weight: 500;
 }

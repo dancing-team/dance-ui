@@ -18,6 +18,7 @@ build
 
 # Editor directories and files
 .vscode/*
+.history/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -36,3 +37,6 @@ build
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Test
+coverage

@@ -1,0 +1,74 @@
+---
+sidebar_position: 5
+---
+
+import ComponentSource from '!!raw-loader!../../../components/src/FloatButtonGroup/FloatButtonGroup'
+import { FloatButtonGroup } from '@dance-ui/ui'
+
+# FloatButtonGroup 悬浮按钮组
+
+悬浮在页面侧边的一列按钮集合，提供了&quot;button&quot;、&quot;elevator&quot;、&quot;link&quot;、&quot;backTop&quot;四种按钮类型
+
+### 代码演示
+
+#### 基本使用
+
+import DemoSrc from '!!raw-loader!../../../components/src/FloatButtonGroup/demo'
+import Demo from '../../../components/src/FloatButtonGroup/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### API
+
+#### FloatButtonGroup 组件 props 属性
+
+| 参数            | 说明                                                  | 类型                                              | 默认值    | 可选择性 |
+| :-------------- | :---------------------------------------------------- | :------------------------------------------------ | :-------- | :------- |
+| `options`       | 结构对象数组                                          | `optionItemType[]`                                | -         | 必须     |
+| `shadow`        | 是否添加阴影样式                                      | `boolean`                                         | `true`    | 可选     |
+| `left`          | 位置相关：组件默认开启`fixed`定位，同定位属性`left`   | `number`                                          | -         | 可选     |
+| `right`         | 位置相关：组件默认开启`fixed`定位，同定位属性`rihgt`  | `number`                                          | -         | 可选     |
+| `top`           | 位置相关：组件默认开启`fixed`定位，同定位属性`top`    | `number`                                          | -         | 可选     |
+| `bottom`        | 位置相关：组件默认开启`fixed`定位，同定位属性`bottom` | `number`                                          | -         | 可选     |
+| `platformStyle` | 提供现有知名电商平台样式                              | `"default"` &#124; `"JingDong"` &#124; `"TaoBao"` | `default` | 可选     |
+
+#### optionItemType 对象配置属性
+
+| 参数          | 说明             | 类型                                                                                                                                | 默认值 | 可选择性 |
+| :------------ | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------- | :----- | :------- |
+| `description` | 按钮描述         | `string`                                                                                                                            | "默认" | 可选     |
+| `type`        | 按钮类型         | `"link"` &#124; `"elevator"` &#124; `"button"` &#124; `"backTop"`                                                                   | -      | 必须     |
+| `action`      | 按钮行为配置对象 | `linkActionOption` &#124; `elevatorActionOption` &#124; `buttonActionOption` &#124; `backTopActionOption`（与`type`属性的取值对应） | -      | 必须     |
+
+#### type 值为"link"时对应的 action 属性
+
+| 参数     | 说明                        | 类型                                                                                | 默认值     | 可选择性 |
+| :------- | :-------------------------- | :---------------------------------------------------------------------------------- | :--------- | :------- |
+| `href`   | 类似于 a 标签的`href`属性   | `string`                                                                            | ""         | 可选     |
+| `target` | 类似于 a 标签的`target`属性 | `'_blank'` &#124; `'_self'` &#124; `'_parent'` &#124; `'_top'` &#124; `'framename'` | `'_blank'` | 可选     |
+
+#### type 值为"elevator"时对应的 action 属性
+
+| 参数  | 说明                                                                             | 类型     | 默认值 | 可选择性 |
+| :---- | :------------------------------------------------------------------------------- | :------- | :----- | :------- |
+| `top` | 点击后滚动至元素`scrollTop`的值为`top`的位置(滚动元素为离组件最近的滚动的父元素) | `number` | 0      | 可选     |
+
+#### type 值为"button"时对应的 action 属性
+
+| 参数      | 说明                     | 类型                 | 默认值     | 可选择性 |
+| :-------- | :----------------------- | :------------------- | :--------- | :------- |
+| `onClick` | 点击按钮后触发的回调函数 | `(e: event) => void` | `() => {}` | 可选     |
+
+#### type 值为"backTop"时对应的 action 属性
+
+| 参数           | 说明                               | 类型     | 默认值 | 可选择性 |
+| :------------- | :--------------------------------- | :------- | :----- | :------- |
+| `visbleheight` | 滚动高度达到此参数值才出现 backTop | `number` | 0      | 可选     |
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

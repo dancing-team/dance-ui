@@ -24,14 +24,16 @@ const DemoBlock = ({ children, title, src, codeExpand = true }: DemoBlockProps):
   return (
     <div className={styles.container}>
       {children ? <div className={styles.demo}>{children}</div> : null}
-      <div className={styles.bar}>
-        {title && <div className={styles.title}>{title}</div>}
-        {src ? (
-          <div className={styles.toolbar} onClick={() => setShowCode(!showCode)}>
-            {showCode ? '收起源代码' : '展开源代码'}
-          </div>
-        ) : null}
-      </div>
+      {src || title ? (
+        <div className={styles.bar}>
+          {title && <div className={styles.title}>{title}</div>}
+          {src ? (
+            <div className={styles.toolbar} onClick={() => setShowCode(!showCode)}>
+              {showCode ? '收起源代码' : '展开源代码'}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
       {renderCode()}
     </div>
   )
