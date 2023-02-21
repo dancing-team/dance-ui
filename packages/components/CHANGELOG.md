@@ -1,5 +1,12 @@
 # @dance-ui/ui
 
+## 0.1.1
+
+### Patch Changes
+
+- bed7a0a: feat: 新增轮播图组件及其基础 api
+- bed7a0a: fix: useThrottle
+
 ## 0.1.0
 
 ### Minor Changes
