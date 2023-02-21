@@ -1,5 +1,11 @@
 # new-component
 
+## 1.1.1
+
+### Patch Changes
+
+- bed7a0a: feat: 新增轮播图组件及其基础 api
+
 ## 1.1.0
 
 ### Minor Changes
