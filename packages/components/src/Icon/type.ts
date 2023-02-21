@@ -4,4 +4,6 @@ export enum IconType {
   CLOSE = 'close',
   DELETE = 'delete',
   ARROW = 'arrow',
+  ARROW_2 = 'arrow-2',
+  DATE_PICKER = 'datepicker',
 }
