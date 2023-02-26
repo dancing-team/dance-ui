@@ -1,5 +1,12 @@
 # @dance-ui/ui
 
+## 0.1.2
+
+### Patch Changes
+
+- 26fb1e5: feat(DatePicker): 新增 DatePicker 组件，初步完成日月年面板
+- 26fb1e5: feat(Icon): 新增 DATE_PICKER & ARROW_2 icon
+
 ## 0.1.1
 
 ### Patch Changes

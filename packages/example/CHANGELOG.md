@@ -1,5 +1,19 @@
 # @dance-ui/example
 
+## 0.2.0
+
+### Minor Changes
+
+- 0445513: feat: 更新文档站 UI，完善首页及 Guide 描述
+
+### Patch Changes
+
+- 26fb1e5: feat(DatePicker): 新增 DatePicker 组件，初步完成日月年面板
+- 26fb1e5: feat(Icon): 新增 DATE_PICKER & ARROW_2 icon
+- Updated dependencies [26fb1e5]
+- Updated dependencies [26fb1e5]
+  - @dance-ui/ui@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
