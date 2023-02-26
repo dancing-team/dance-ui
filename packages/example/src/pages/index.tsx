@@ -5,6 +5,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Layout from '@theme/Layout'
 import HomepageFeatures from '@site/src/components/HomepageFeatures'
 import styles from './index.module.css'
+import { Button } from '@dance-ui/ui'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function HomepageHeader() {

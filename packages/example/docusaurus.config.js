@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'dance-ui',
+  tagline: '🌸 A simple and elegant component library.',
+  url: 'https://dance.cosine.ren/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -36,7 +36,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/dancing-team/dance-ui/tree/main/packages/example/src/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -49,9 +49,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'dance-ui',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'dance-ui Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -81,7 +81,7 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'Docusaurus Community',
             items: [
               {
                 label: 'Stack Overflow',
