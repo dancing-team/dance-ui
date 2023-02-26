@@ -129,7 +129,7 @@ importers:
 
   packages/example:
     specifiers:
-      '@dance-ui/ui': workspace:^0.1.1
+      '@dance-ui/ui': workspace:^0.1.2
       '@docusaurus/core': 2.2.0
       '@docusaurus/module-type-aliases': 2.2.0
       '@docusaurus/preset-classic': 2.2.0
