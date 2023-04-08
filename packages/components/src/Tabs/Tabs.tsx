@@ -1,26 +1,33 @@
-export default function Tabs() {
-    return (
-        <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 text-gray-800 bg-white rounded-t-lg active ">
-                    Home
-                </a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ">
-                    Calendar
-                </a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ">
-                    Results
-                </a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ">
-                    Live
-                </a>
-            </li>
-        </ul>
-    );
+import { ReactElement, ReactNode, cloneElement, useState } from 'react'
+import Tab from './Tab'
+import TabList from './TabList'
+import TabPanel from './TabPanel'
+import { twMerge } from 'tailwind-merge'
+
+export type TabsProps = {
+  className?: string
+  children?: ReactNode[]
 }
+function Tabs({ className, children }: TabsProps) {
+  const [selected, setSelected] = useState(0)
+  if (!children?.length || children?.length <= 1) return null
+  const [tabList, ...tabPanels] = children
+  return (
+    <div className={twMerge('flex flex-col items-center justify-center gap-3', className)}>
+      {cloneElement(tabList as ReactElement, {
+        selected,
+        setSelected,
+        ...((tabList as any)?.props ?? {}),
+      })}
+      {cloneElement((tabPanels as any)[selected], {
+        key: `tab-panel-${selected}`,
+        ...((tabPanels[selected] as any)?.props ?? {}),
+      })}
+    </div>
+  )
+}
+
+Tabs.TabList = TabList
+Tabs.Tab = Tab
+Tabs.TabPanel = TabPanel
+export default Tabs
