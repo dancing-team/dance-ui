@@ -1,15 +1,18 @@
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type TabProps = {
-  selected?: boolean
-  onClick?: () => void
   className?: string
   indicatorClass?: string
   children?: ReactNode
+
+  /** Private */
+  id?: string
+  selected?: boolean
+  onClick?: MouseEventHandler<HTMLDivElement>
 }
-function Tab({ selected, children, onClick, className, indicatorClass }: TabProps) {
+function Tab({ children, className, indicatorClass, selected, onClick }: TabProps) {
   return (
     <div
       className={classNames(

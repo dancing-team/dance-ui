@@ -1,27 +1,31 @@
-import { ReactElement, ReactNode, cloneElement, useState } from 'react'
+import { ReactElement, cloneElement, useState } from 'react'
 import Tab from './Tab'
 import TabList from './TabList'
 import TabPanel from './TabPanel'
 import { twMerge } from 'tailwind-merge'
 
 export type TabsProps = {
+  id?: string
   className?: string
-  children?: ReactNode[]
+  children?: ReactElement[]
 }
-function Tabs({ className, children }: TabsProps) {
+function Tabs({ id = 'default', className, children }: TabsProps) {
   const [selected, setSelected] = useState(0)
-  if (!children?.length || children?.length <= 1) return null
-  const [tabList, ...tabPanels] = children
+  const [tabList, ...tabPanels] = children ?? []
+
+  if (!children?.length || children?.length <= 1) throw new Error('Tabs must have at least 2 children')
   return (
     <div className={twMerge('flex flex-col items-center justify-center gap-3', className)}>
-      {cloneElement(tabList as ReactElement, {
+      {cloneElement(tabList, {
         selected,
         setSelected,
-        ...((tabList as any)?.props ?? {}),
+        onClick: tabList?.props?.onClick,
+        id,
+        ...(tabList?.props ?? {}),
       })}
-      {cloneElement((tabPanels as any)[selected], {
-        key: `tab-panel-${selected}`,
-        ...((tabPanels[selected] as any)?.props ?? {}),
+      {cloneElement(tabPanels[selected], {
+        key: tabPanels[selected]?.props?.key ?? `${id}-tab-panel-${selected}`,
+        ...(tabPanels[selected]?.props ?? {}),
       })}
     </div>
   )
