@@ -1,26 +1,37 @@
-export default function Tabs() {
-    return (
-        <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 text-gray-800 bg-white rounded-t-lg active ">
-                    Home
-                </a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ">
-                    Calendar
-                </a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ">
-                    Results
-                </a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 ">
-                    Live
-                </a>
-            </li>
-        </ul>
-    );
+import { ReactElement, cloneElement, useState } from 'react'
+import Tab from './Tab'
+import TabList from './TabList'
+import TabPanel from './TabPanel'
+import { twMerge } from 'tailwind-merge'
+
+export type TabsProps = {
+  id?: string
+  className?: string
+  children?: ReactElement[]
 }
+function Tabs({ id = 'default', className, children }: TabsProps) {
+  const [selected, setSelected] = useState(0)
+  const [tabList, ...tabPanels] = children ?? []
+
+  if (!children?.length || children?.length <= 1) throw new Error('Tabs must have at least 2 children')
+  return (
+    <div className={twMerge('flex flex-col items-center justify-center gap-3', className)}>
+      {cloneElement(tabList, {
+        selected,
+        setSelected,
+        onClick: tabList?.props?.onClick,
+        id,
+        ...(tabList?.props ?? {}),
+      })}
+      {cloneElement(tabPanels[selected], {
+        key: tabPanels[selected]?.props?.key ?? `${id}-tab-panel-${selected}`,
+        ...(tabPanels[selected]?.props ?? {}),
+      })}
+    </div>
+  )
+}
+
+Tabs.TabList = TabList
+Tabs.Tab = Tab
+Tabs.TabPanel = TabPanel
+export default Tabs
