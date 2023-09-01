@@ -1,9 +1,27 @@
+---
+sidebar_position: 10
+---
+
+import ComponentSource from '!!raw-loader!../../../components/src/Tabs/Tabs'
 import { Tabs } from '@dance-ui/ui'
 
-# Tabs 导航栏 - 待开发
+# Tabs 导航栏
 
-#### 基础使用
+按钮组件
 
-<DemoBlock>
-  <Tabs></Tabs>
+import DemoSrc from '!!raw-loader!../../../components/src/Tabs/demo'
+import Demo from '../../../components/src/Tabs/demo'
+
+## 演示
+
+### type
+
+<DemoBlock title="基本使用" src={DemoSrc}>
+  <Demo />
 </DemoBlock>
+
+## 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

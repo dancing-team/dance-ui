@@ -1,14 +1,3 @@
-export type { 
-    configItemType, 
-    linkActionConfig, 
-    elevatorActionConfig, 
-    buttonActionConfig,
-    backTopActionConfig
-} from "./types";
+export type { configItemType, linkActionConfig, elevatorActionConfig, buttonActionConfig, backTopActionConfig } from './types'
 
-export {
-    judgeLinkType,  
-    judgeElevatorType, 
-    judgeButtonType,
-    judgeBackTopType
-} from "./utils";
+export { judgeLinkType, judgeElevatorType, judgeButtonType, judgeBackTopType } from './utils'

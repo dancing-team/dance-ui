@@ -22,15 +22,9 @@ export type StatisticProps = {
   style?: React.CSSProperties
 }
 
-const Statistic: React.FC = ({}: StatisticProps):JSX.Element => {
-  return (
-    <div>
-      
-    </div>
-  )
+const Statistic: React.FC = ({}: StatisticProps): JSX.Element => {
+  return <div></div>
 }
-
-
 
 Statistic.defaultProps = {
   type: 'default',
