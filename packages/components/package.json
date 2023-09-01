@@ -44,7 +44,7 @@
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
     "lodash-es": "^4.17.21",
-    "react-use": "^17.4.0",
+    "react-use": "^15.3.8",
     "styled-components": "^5.3.6",
     "tailwind-merge": "^1.12.0"
   },

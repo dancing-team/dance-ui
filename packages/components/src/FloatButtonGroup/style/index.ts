@@ -1,6 +1,7 @@
 export const commonStyle = {
   ulStyle: 'fixed cursor-pointer w-14 p-0 m-0 overflow-hidden',
-  liStyle: 'relative list-none w-14 h-14 bg-white flex justify-center items-center after:content-[""] after:absolute after:bottom-0 after:block after:h-[1px] after:w-14 after:bg-[linear-gradient(270deg,white,#eeeeee,#eeeeee,white)] after:last-of-type:hidden',
+  liStyle:
+    'relative list-none w-14 h-14 bg-white flex justify-center items-center after:content-[""] after:absolute after:bottom-0 after:block after:h-[1px] after:w-14 after:bg-[linear-gradient(270deg,white,#eeeeee,#eeeeee,white)] after:last-of-type:hidden',
   aStyle: 'w-full h-full flex justify-center items-center no-underline text-black text-xs hover:no-underline hover:text-black',
   shadowStyle: 'shadow-xl',
 }

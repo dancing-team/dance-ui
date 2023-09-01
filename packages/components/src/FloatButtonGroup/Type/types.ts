@@ -1,50 +1,50 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 // 此文件旨在构造configItemType类型（FloatButtonGroup配置数组configs的配置项的类型）: 使type与action强绑定——>一种type对应一种action类型
 
-interface configItemBase {
-    description?: ReactNode,
-    type: "link" | "elevator" | "button" | "backTop",
-    action: linkActionConfig | elevatorActionConfig | buttonActionConfig | backTopActionConfig
+type configItemBase = {
+  description?: ReactNode
+  type: 'link' | 'elevator' | 'button' | 'backTop'
+  action: linkActionConfig | elevatorActionConfig | buttonActionConfig | backTopActionConfig
 }
 
-export interface linkActionConfig {
-    href?: string,
-    target?: '_blank' | '_self' | '_parent' | '_top' | 'framename'
+export type linkActionConfig = {
+  href?: string
+  target?: '_blank' | '_self' | '_parent' | '_top' | 'framename'
 }
 
-export interface elevatorActionConfig {
-    top?: number,
+export type elevatorActionConfig = {
+  top?: number
 }
 
-export interface buttonActionConfig {
-    onClick?: (...arg: any[]) => any,
+export type buttonActionConfig = {
+  onClick?: (...arg: any[]) => any
 }
 
-export interface backTopActionConfig {
-    visibleheight?: number
+export type backTopActionConfig = {
+  visibleheight?: number
 }
 
-interface configSituation_link extends configItemBase {
-    type: "link"
-    action: linkActionConfig
-}
+type configSituation_link = {
+  type: 'link'
+  action: linkActionConfig
+} & configItemBase
 
-interface configSituation_elevator extends configItemBase {
-    type: "elevator"
-    action: elevatorActionConfig
-}
+type configSituation_elevator = {
+  type: 'elevator'
+  action: elevatorActionConfig
+} & configItemBase
 
-interface configSituation_button extends configItemBase {
-    type: "button"
-    action: buttonActionConfig
-}
+type configSituation_button = {
+  type: 'button'
+  action: buttonActionConfig
+} & configItemBase
 
-interface configSituation_backTop extends configItemBase {
-    type: "backTop"
-    action: backTopActionConfig
-}
+type configSituation_backTop = {
+  type: 'backTop'
+  action: backTopActionConfig
+} & configItemBase
 
-type configItemType = configSituation_link | configSituation_elevator | configSituation_button | configSituation_backTop;
+type configItemType = configSituation_link | configSituation_elevator | configSituation_button | configSituation_backTop
 
-export type {configItemType};
+export type { configItemType }

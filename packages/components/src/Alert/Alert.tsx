@@ -1,5 +1,5 @@
 import React, { createRef, LegacyRef } from 'react'
-export interface AlertProps {
+export type AlertProps = {
   /* alert 类型 */
   type?: 'alert' | 'success' | 'danger'
   /* alert 标题 */
@@ -26,10 +26,10 @@ const Alert: React.FC<AlertProps> = (props: AlertProps): JSX.Element => {
   }
 
   return (
-    <div className={`${cssClasses} border-l-4 p-4 relative`} role="alert" ref={alert}>
+    <div className={`${cssClasses} relative border-l-4 p-4`} role="alert" ref={alert}>
       <p className="font-bold">{props.title}</p>
       {closable && (
-        <span className="absolute right-2 top-0 cursor-pointer leading-0" onClick={handleClose}>
+        <span className="leading-0 absolute right-2 top-0 cursor-pointer" onClick={handleClose}>
           x
         </span>
       )}
@@ -38,10 +38,10 @@ const Alert: React.FC<AlertProps> = (props: AlertProps): JSX.Element => {
   )
 }
 Alert.defaultProps = {
-    /* 默认的类型 */
-    type: 'alert',
-    /* 是否可以关闭 */
-    closable: false,
-  }
+  /* 默认的类型 */
+  type: 'alert',
+  /* 是否可以关闭 */
+  closable: false,
+}
 
 export default Alert

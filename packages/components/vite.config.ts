@@ -10,14 +10,14 @@ export default defineConfig({
     libCss(),
     dts({
       //指定使用的tsconfig.json
-      tsConfigFilePath: './tsconfig.json',
+      tsconfigPath: '../../tsconfig.json',
       /**
-      * 是否生成类型声明入口
-      * 当为 true 时会基于 package.json 的 types 字段生成，或者 `${outputDir}/index.d.ts`
-      * 当开启打包类型文件时强制为 true
-      * @default false
-      */
-      insertTypesEntry: true
+       * 是否生成类型声明入口
+       * 当为 true 时会基于 package.json 的 types 字段生成，或者 `${outputDir}/index.d.ts`
+       * 当开启打包类型文件时强制为 true
+       * @default false
+       */
+      insertTypesEntry: true,
     }),
   ],
   build: {
@@ -25,7 +25,7 @@ export default defineConfig({
     //打包文件目录
     outDir: 'dist',
     //压缩
-    minify: false,
+    minify: 'terser',
     // 内联 css
     // cssCodeSplit: true,
     rollupOptions: {
@@ -42,8 +42,14 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'dance-ui',
-      // formatType: es、umd等
-      fileName: formatType => `dance-ui.${formatType}.js`
+      fileName: (formatType) => `dance-ui.${formatType}.js`,
+      formats: ['es'], // 默认['es', 'umd']
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
     },
   },
 })
