@@ -1,5 +1,13 @@
 # @dance-ui/demo
 
+## 0.1.1
+
+### Patch Changes
+
+- Updated dependencies [a19245f]
+- Updated dependencies [e07ab3d]
+  - @dance-ui/ui@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@dance-ui/example",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "🌸 A simple and elegant component library document site.",
   "authors": [
     "cosine_yu@qq.com"
@@ -23,7 +23,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@dance-ui/ui": "workspace:^0.1.2",
+    "@dance-ui/ui": "workspace:^0.2.0",
     "@docusaurus/core": "2.2.0",
     "@docusaurus/preset-classic": "2.2.0",
     "@mdx-js/react": "^1.6.22",
