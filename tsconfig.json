@@ -16,5 +16,5 @@
     "jsx": "preserve"
   },
   "include": ["packages/components/src/**/*.ts", "packages/components/src/**/*.tsx"],
-  "exclude": ["packages/components/src/**/demo", "node_modules"]
+  "exclude": ["packages/components/src/**/demo", "packages/components/src/**/__tests__", "node_modules"]
 }
