@@ -1,5 +1,18 @@
 # @dance-ui/example
 
+## 0.3.0
+
+### Minor Changes
+
+- a19245f: build: fix build error
+
+### Patch Changes
+
+- e07ab3d: fix: jest config
+- Updated dependencies [a19245f]
+- Updated dependencies [e07ab3d]
+  - @dance-ui/ui@0.2.0
+
 ## 0.2.0
 
 ### Minor Changes
