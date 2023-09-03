@@ -1,5 +1,17 @@
 # @dance-ui/demo
 
+## 0.2.0
+
+### Minor Changes
+
+- 8b4100f: 新增 RadioGroup 组件
+
+### Patch Changes
+
+- Updated dependencies [aa8702b]
+- Updated dependencies [8b4100f]
+  - @dance-ui/ui@0.3.0
+
 ## 0.1.1
 
 ### Patch Changes
