@@ -1,5 +1,18 @@
 # @dance-ui/example
 
+## 0.4.0
+
+### Minor Changes
+
+- 8b4100f: 新增 RadioGroup 组件
+
+### Patch Changes
+
+- aa8702b: fix: Button styles & Tab Indicator
+- Updated dependencies [aa8702b]
+- Updated dependencies [8b4100f]
+  - @dance-ui/ui@0.3.0
+
 ## 0.3.0
 
 ### Minor Changes
