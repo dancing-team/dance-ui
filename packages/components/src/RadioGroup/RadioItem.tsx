@@ -111,7 +111,7 @@ export const RadioItem = ({
             isSelected
               ? 'border-dd-primary text-dd-primary'
               : 'border-black group-hover:border-black dark:border-white dark:group-hover:border-white',
-            { 'bg-white/20 group-hover:opacity-90': isInput },
+            { 'bg-black/20 group-hover:opacity-90 dark:bg-white/20': isInput },
           ),
           labelClass,
           innerLabelClass,
@@ -123,7 +123,7 @@ export const RadioItem = ({
           {isInput && (
             <input
               className={twMerge(
-                classNames('cursor-pointer bg-transparent outline-none placeholder:text-white/50', {
+                classNames('cursor-pointer bg-transparent placeholder-black/50 outline-none dark:placeholder-white/50', {
                   'border border-dd-primary': isSelected,
                 }),
                 inputClass,
