@@ -1,0 +1,64 @@
+---
+sidebar_position: 6
+---
+
+import ComponentSource from '!!raw-loader!../../../components/src/RadioGroup/RadioGroup'
+import { RadioGroup } from '@dance-ui/ui'
+
+# RadioGroup 单选按钮组
+
+RadioGroup 是一个用于呈现一组单选按钮的组件。用户可以从多个选项中选择一个选项。
+
+### 代码演示
+
+#### 基本使用
+
+import DemoSrc from '!!raw-loader!../../../components/src/RadioGroup/demo'
+import Demo from '../../../components/src/RadioGroup/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### API
+
+#### RadioGroup
+
+| 属性              | 说明                   | 类型                                          | 默认值 |
+| ----------------- | ---------------------- | --------------------------------------------- | ------ |
+| options           | 单选按钮组的选项       | `Array<RadioOption \| RadioOption[] \| null>` | -      |
+| name              | 单选按钮的 `name` 属性 | string                                        | -      |
+| value             | 当前选中的值           | OptionValueType                               | -      |
+| defaultValue      | 默认选中的值           | string                                        | -      |
+| onChange          | 选项变化时的回调函数   | (value: string, key?: string) => void         | -      |
+| className         | 组件的类名             | string                                        | -      |
+| dotClass          | 单选按钮点的类名       | string                                        | -      |
+| dotContainerClass | 单选按钮点容器的类名   | string                                        | -      |
+| labelClass        | 标签的类名             | string                                        | -      |
+
+#### RadioOption
+
+| 属性              | 说明                 | 类型                                 | 默认值 |
+| ----------------- | -------------------- | ------------------------------------ | ------ |
+| label             | 选项的标签           | `string \| ReactNode`                | -      |
+| key               | 选项的键             | string                               | -      |
+| value             | 选项的值             | OptionValueType                      | -      |
+| suffix            | 选项的后缀           | string                               | -      |
+| prefix            | 选项的前缀           | string                               | -      |
+| onClick           | 选项点击时的回调函数 | `MouseEventHandler<HTMLSpanElement>` | -      |
+| beforeOnChange    | 在改变之前的回调函数 | (value: string) => boolean           | -      |
+| isInput           | 是否为输入值         | boolean                              | -      |
+| defaultValue      | 输入的默认值         | string                               | -      |
+| inputClass        | 输入的类名           | string                               | -      |
+| placeholder       | 输入的占位符         | string                               | -      |
+| className         | 选项的类名           | string                               | -      |
+| labelClass        | 选项标签的类名       | string                               | -      |
+| labelStyle        | 选项标签的样式       | CSSProperties                        | -      |
+| dotClass          | 选项点的类名         | string                               | -      |
+| dotContainerClass | 选项点容器的类名     | string                               | -      |
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>

@@ -1,10 +1,11 @@
 import classNames from 'classnames'
-import { MouseEventHandler, ReactNode } from 'react'
+import { MouseEventHandler, ReactNode, useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type TabProps = {
   className?: string
   indicatorClass?: string
+  renderIndicator?: (selected?: boolean) => ReactNode
   children?: ReactNode
 
   /** Private */
@@ -12,7 +13,12 @@ type TabProps = {
   selected?: boolean
   onClick?: MouseEventHandler<HTMLDivElement>
 }
-function Tab({ children, className, indicatorClass, selected, onClick }: TabProps) {
+function Tab({ children, className, indicatorClass, renderIndicator, id, selected, onClick }: TabProps) {
+  const _renderIndicator = useCallback(() => {
+    if (!selected) return null
+    if (renderIndicator) return renderIndicator(selected)
+    return <div className={twMerge('absolute inset-x-0 -bottom-1 border border-dd-primary', indicatorClass)} />
+  }, [indicatorClass, renderIndicator, selected])
   return (
     <div
       className={classNames(
@@ -21,7 +27,7 @@ function Tab({ children, className, indicatorClass, selected, onClick }: TabProp
       )}
       onClick={onClick}>
       {children}
-      {selected && <div className={twMerge('absolute inset-x-0 -bottom-1 border-t-2 border-dd-primary', indicatorClass)} />}
+      {_renderIndicator()}
     </div>
   )
 }

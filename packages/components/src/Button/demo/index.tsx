@@ -6,7 +6,6 @@ export default () => (
     <Space>
       type 默认为 default 按钮，primary 表示主要按钮，link 表示无边框按钮， unstyle 表示不带任何样式的按钮（方便自己定制）
       <Button>Default</Button>
-      <Button type="default">Default</Button>
       <Button type="primary">Primary</Button>
       <Button type="link">Link</Button>
       <Button type="unstyle">Unstyle</Button>

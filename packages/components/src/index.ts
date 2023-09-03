@@ -18,8 +18,6 @@ export { default as CountDown } from './CountDown'
 
 export { default as Skeleton } from './Skeleton'
 
-export { default as Table } from './Table'
-
 export { default as Tag } from './Tag'
 
 export { default as Badge } from './Badge'
@@ -33,3 +31,5 @@ export { default as Alert } from './Alert'
 export { default as Tabs } from './Tabs'
 
 export { default as DatePicker } from './DatePicker'
+
+export { default as RadioGroup } from './RadioGroup'
