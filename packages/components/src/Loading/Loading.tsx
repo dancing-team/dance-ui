@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import React, { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 import Icon, { IconType } from '../Icon'
 
 export type LoadingProps = {
@@ -27,7 +27,7 @@ const Loading = ({ show, iconType, renderIcon, className, style, iconClassName, 
   return (
     <>
       {show ? (
-        <div className={classNames('inline-block animate-spin text-base', className)} style={style}>
+        <div className={twMerge('inline-block animate-spin text-base', className)} style={style}>
           {_renderIcon()}
         </div>
       ) : null}

@@ -17,6 +17,17 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
+div[class^='demo_'] {
+  color: black;
+}
+
+[data-theme='dark'] div[class^='demo_'] {
+  color: white;
+  background-color: black;
+  border-start-start-radius: 8px;
+  border-start-end-radius: 8px;
+}
+
 /* reset */
 button {
   background-color: unset;

@@ -10,4 +10,11 @@
     vertical-align: -0.15em;
     fill: currentColor;
   }
+  /* tailwind preset  */
+  *,
+  ::before,
+  ::after {
+    border-width: 0;
+    border-style: solid;
+  }
 }

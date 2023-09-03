@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { CSSProperties, forwardRef, LegacyRef, ReactNode, useMemo } from 'react'
 import Loading, { LoadingProps } from '../Loading'
+import { twMerge } from 'tailwind-merge'
 
 export type ButtonProps = {
   /** 按钮类型 */
@@ -39,7 +40,7 @@ const ButtonClass = {
     small: 'px-1',
   },
   typeClass: {
-    default: 'border-black bg-white text-black enabled:hover:border-dd-primary enabled:hover:text-dd-primary',
+    default: 'border-dd-primary text-dd-primary enabled:hover:opacity-80',
     primary: 'border-dd-primary bg-dd-primary text-white enabled:hover:opacity-80',
     link: 'border-transparent enabled:hover:text-dd-primary',
   },
@@ -85,18 +86,20 @@ const Button = forwardRef(function ButtonInner(
       className={
         type === 'unstyle'
           ? className
-          : classNames(
-              'box-border border transition focus:outline-none',
-              sizeClass[size ?? 'middle'],
-              _chooseClass[type ?? 'default'],
-              _disabled ? 'disabled:cursor-not-allowed disabled:opacity-60' : 'cursor-pointer',
+          : twMerge(
+              classNames(
+                'box-border border transition focus:outline-none',
+                sizeClass[size ?? 'middle'],
+                _chooseClass[type ?? 'default'],
+                _disabled ? 'disabled:cursor-not-allowed disabled:opacity-60' : 'cursor-pointer',
+              ),
               className,
             )
       }
       style={style}
       onClick={_disabled ? undefined : onClick}
       disabled={_disabled}>
-      <Loading show={loading} className={classNames('mr-2', iconClassName)} {...loadingIconProps} />
+      <Loading show={loading} className={twMerge('mr-2', iconClassName)} {...loadingIconProps} />
       {children}
     </button>
   )
