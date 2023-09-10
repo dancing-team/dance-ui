@@ -1,5 +1,13 @@
 # @dance-ui/demo
 
+## 0.2.1
+
+### Patch Changes
+
+- d7d13e8: feat: 新增图片选择器组件 ImageSelector
+- Updated dependencies [d7d13e8]
+  - @dance-ui/ui@0.3.1
+
 ## 0.2.0
 
 ### Minor Changes
