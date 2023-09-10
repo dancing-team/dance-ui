@@ -1,0 +1,57 @@
+---
+sidebar_position: 6
+---
+
+import ComponentSource from '!!raw-loader!../../../components/src/ImageSelector/ImageSelector'
+import { ImageSelector } from '@dance-ui/ui'
+
+# ImageSelector 图片选择器
+
+`ImageSelector` 是一个用于上传和显示图片的组件。它允许用户选择多张图片，并提供了一个简单的界面来查看和删除已上传的图片。
+
+### API
+
+#### ImageSelectorProps
+
+| 属性            | 说明                                                      | 类型                                                                                                         | 默认值          |
+| --------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------- |
+| name            | input 文件输入的 name 属性                                | string                                                                                                       | -               |
+| className       | 组件的类名                                                | string                                                                                                       | -               |
+| itemClass       | 图片项的类名                                              | string                                                                                                       | -               |
+| defaultImages   | 默认显示的图片数组                                        | string[]                                                                                                     | -               |
+| maxSize         | 允许上传的最大文件大小（以字节为单位）                    | number                                                                                                       | 3 _ 1024 _ 1024 |
+| images          | 当前已上传的图片的 URL 数组                               | string[]                                                                                                     | -               |
+| onChange        | 当图片数组发生变化时的回调函数，参数为当前的图片 URL 数组 | (images: string[]) => void                                                                                   | -               |
+| upload          | 上传函数，成功返回图片 url，失败返回 null                 | `(file: File) => Promise<string \| null>`                                                                    | -               |
+| onError         | 文件上传错误时的回调函数                                  | (file: File) => void                                                                                         | -               |
+| addButtonClass  | 添加按钮的类名                                            | string                                                                                                       | -               |
+| renderAddButton | 自定义渲染添加按钮的函数                                  | ({ triggerFileInput }: { triggerFileInput: () => void }) => JSX.Element                                      | -               |
+| closeIconClass  | 关闭图标的类名                                            | string                                                                                                       | -               |
+| renderCloseIcon | 自定义渲染关闭图标的函数                                  | ({ handleRemoveImage, index }: { index: number; handleRemoveImage: (index: number) => void }) => JSX.Element | -               |
+
+### 代码演示
+
+#### 基本使用
+
+在这个示例中，我们展示了 `ImageSelector` 组件的基本使用。用户可以通过点击 "+" 按钮来上传新的图片。上传的图片 URL 是一个模拟的 URL。
+
+import DemoSrc from '!!raw-loader!../../../components/src/ImageSelector/demo'
+import Demo from '../../../components/src/ImageSelector/demo'
+
+<DemoBlock src={DemoSrc}>
+  <Demo />
+</DemoBlock>
+
+### 注意
+
+1. `maxSize` 属性定义了可以上传的最大文件大小字节数，其默认值为 3MB (3*1024*1024)。
+2. 上传函数 `upload` 是一个必须实现的函数，它接收一个文件对象作为参数，并返回一个 Promise。如果上传成功，Promise 应该解析为图片的 URL；如果上传失败，应该解析为 null。
+3. `onError` 函数是一个可选的回调，它在文件上传错误时被调用，接收失败的文件对象作为参数。
+4. `renderAddButton` 和 `renderCloseIcon` 允许你自定义添加按钮和关闭图标的渲染。
+5. 删除图片时，目前的实现有一个小错误，它总是删除第一张图片而不是选定的图片。你应该使用 `updatedImages.splice(index, 1)` 而不是 `updatedImages.shift()` 来修复这个问题。
+
+### 组件源码
+
+<CodeBlock title="组件源码" language={'tsx'} showLineNumbers>
+  {ComponentSource}
+</CodeBlock>
